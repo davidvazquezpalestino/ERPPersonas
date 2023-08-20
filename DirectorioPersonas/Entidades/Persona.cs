@@ -10,5 +10,6 @@
         public string? RazonSocial { get; set; }
         public string? RegimenFiscal { get; set; }
         public string? CodigoPostal { get; set; }
+        public override string? ToString() => RazonSocial;
     }
 }
