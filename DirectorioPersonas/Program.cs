@@ -21,7 +21,7 @@
                 collection.AddFrontendServices(context.Configuration);
             }).Build();
 
-            Application.Run(host.Services.GetRequiredService<FormPersonas>());
+            Application.Run(host.Services.GetRequiredService<FormLogin>());
         }
     }
 }

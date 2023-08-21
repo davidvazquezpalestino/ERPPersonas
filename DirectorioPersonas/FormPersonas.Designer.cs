@@ -48,6 +48,7 @@
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             personaBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -70,7 +72,7 @@
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1117, 617);
+            layoutControl1.Size = new System.Drawing.Size(1101, 617);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -80,11 +82,11 @@
             ButtonQuery.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             ButtonQuery.Appearance.Options.UseBackColor = true;
             ButtonQuery.Appearance.Options.UseFont = true;
-            ButtonQuery.Location = new System.Drawing.Point(3, 3);
+            ButtonQuery.Location = new System.Drawing.Point(822, 3);
             ButtonQuery.Name = "ButtonQuery";
-            ButtonQuery.Size = new System.Drawing.Size(463, 28);
+            ButtonQuery.Size = new System.Drawing.Size(131, 28);
             ButtonQuery.StyleController = layoutControl1;
-            ButtonQuery.TabIndex = 4;
+            ButtonQuery.TabIndex = 0;
             ButtonQuery.Text = "Actualizar Lista";
             ButtonQuery.Click += ButtonQuery_Click;
             // 
@@ -94,12 +96,12 @@
             ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             ButtonUpdate.Appearance.Options.UseBackColor = true;
             ButtonUpdate.Appearance.Options.UseFont = true;
-            ButtonUpdate.Location = new System.Drawing.Point(470, 3);
+            ButtonUpdate.Location = new System.Drawing.Point(957, 3);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new System.Drawing.Size(644, 28);
+            ButtonUpdate.Size = new System.Drawing.Size(141, 28);
             ButtonUpdate.StyleController = layoutControl1;
-            ButtonUpdate.TabIndex = 0;
-            ButtonUpdate.Text = "Guardar Lista";
+            ButtonUpdate.TabIndex = 2;
+            ButtonUpdate.Text = "Guardar Cambios";
             ButtonUpdate.Click += ButtonGuardar_Click;
             // 
             // gridControlCuentas
@@ -108,8 +110,8 @@
             gridControlCuentas.Location = new System.Drawing.Point(3, 35);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
-            gridControlCuentas.Size = new System.Drawing.Size(1111, 579);
-            gridControlCuentas.TabIndex = 2;
+            gridControlCuentas.Size = new System.Drawing.Size(1095, 579);
+            gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
             // gridViewCuentas
@@ -211,10 +213,10 @@
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, emptySpaceItem1 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            Root.Size = new System.Drawing.Size(1117, 617);
+            Root.Size = new System.Drawing.Size(1101, 617);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -222,33 +224,41 @@
             layoutControlItem1.Control = gridControlCuentas;
             layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(1115, 583);
+            layoutControlItem1.Size = new System.Drawing.Size(1099, 583);
             layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = ButtonUpdate;
-            layoutControlItem2.Location = new System.Drawing.Point(467, 0);
+            layoutControlItem2.Location = new System.Drawing.Point(954, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(648, 32);
+            layoutControlItem2.Size = new System.Drawing.Size(145, 32);
             layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             layoutControlItem3.Control = ButtonQuery;
-            layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem3.Location = new System.Drawing.Point(819, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(467, 32);
+            layoutControlItem3.Size = new System.Drawing.Size(135, 32);
             layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem3.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            emptySpaceItem1.AllowHotTrack = false;
+            emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            emptySpaceItem1.Name = "emptySpaceItem1";
+            emptySpaceItem1.Size = new System.Drawing.Size(819, 32);
+            emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1117, 617);
+            ClientSize = new System.Drawing.Size(1101, 617);
             Controls.Add(layoutControl1);
             Name = "FormPersonas";
             Text = "Créditos";
@@ -263,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -289,6 +300,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private SimpleButton ButtonQuery;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }
 

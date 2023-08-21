@@ -7,10 +7,10 @@ public class Repository : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Persona>().ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);
-        modelBuilder.Entity<Socio>().ToTable("tSCSsocios", "dbo").HasKey(socio => socio.IdSocio);
         modelBuilder.Entity<Sucursal>().ToTable("tCTLsucursales", "dbo").HasKey(sucursal => sucursal.IdSucursal);
         modelBuilder.Entity<TipoDetalle>().ToTable("tCTLtiposD", "dbo").HasKey(detalle => detalle.IdTipoD);
         modelBuilder.Entity<EstatusActual>().ToTable("tCTLestatusActual", "dbo").HasKey(estatusActual => estatusActual.IdEstatusActual);
+        modelBuilder.Entity<User>().ToTable("tCTLusuarios", "dbo").HasKey(user => user.IdUsuario);
 
 
         modelBuilder.Entity<Socio>(builder =>
