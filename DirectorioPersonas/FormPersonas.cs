@@ -9,7 +9,6 @@ namespace WinFormsClient
         private readonly IMessageBox<DialogResult> MessageBox;
         private readonly IServiceProvider Provider;
 
-
         public FormPersonas(IPersonaRepository personaRepository,
             ICreditoRepository creditoRepository,
             IMessageBox<DialogResult> messageBox,
@@ -26,12 +25,18 @@ namespace WinFormsClient
 
         private async Task ListarCreditos()
         {
-            this.Cursor = Cursors.WaitCursor;
-
-            IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync();
-            gridControlCuentas.SetItems(creditos);
-
-            this.Cursor = Cursors.Default;
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                ButtonQuery.Enabled = false;
+                IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync();
+                gridControlCuentas.SetItems(creditos);
+            }
+            finally
+            {
+                ButtonQuery.Enabled = true;
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private void gridControlCuentas_DoubleClick(object sender, EventArgs e)

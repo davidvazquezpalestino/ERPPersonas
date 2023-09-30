@@ -9,6 +9,8 @@ public class Repository : DbContext
         modelBuilder.Entity<Persona>().ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);
         modelBuilder.Entity<Sucursal>().ToTable("tCTLsucursales", "dbo").HasKey(sucursal => sucursal.IdSucursal);
         modelBuilder.Entity<TipoDetalle>().ToTable("tCTLtiposD", "dbo").HasKey(detalle => detalle.IdTipoD);
+        //modelBuilder.Entity<TipoCredito>().ToTable("tCTLtiposD", "dbo").HasKey(detalle => detalle.IdTipoD);
+
         modelBuilder.Entity<EstatusActual>().ToTable("tCTLestatusActual", "dbo").HasKey(estatusActual => estatusActual.IdEstatusActual);
         modelBuilder.Entity<User>().ToTable("tCTLusuarios", "dbo").HasKey(user => user.IdUsuario);
 
@@ -31,16 +33,26 @@ public class Repository : DbContext
             builder.HasOne(credito => credito.Socio)
                 .WithMany()
                 .HasForeignKey(socio => socio.IdSocio);
+
+            //builder.HasOne(credito => credito.TipoCredito)
+            //    .WithMany().HasForeignKey(credito => credito.IdTipoDAIC);
+
+            builder
+                  .HasOne(td => td.TipoCredito)
+                .WithMany()
+                .HasForeignKey(td => td.IdTipoDAIC);
+
+
         });
 
         modelBuilder.Entity<Domicilios>(builder =>
             {
                 builder.ToTable("tCATdomicilios", "dbo").HasKey(domicilio => domicilio.IdDomicilio);
-               
+
                 builder.HasOne(domicilio => domicilio.TipoDetalle)
                     .WithMany()
                     .HasForeignKey(domicilio => domicilio.IdTipoD);
-                    
+
                 builder.HasOne(domicilio => domicilio.EstatusActual)
                     .WithMany()
                     .HasForeignKey(domicilio => domicilio.IdEstatusActual);

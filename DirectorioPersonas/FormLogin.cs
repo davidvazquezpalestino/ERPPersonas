@@ -1,4 +1,5 @@
-﻿using CoreMessageBox.Abstracciones;
+﻿using System.Diagnostics;
+using CoreMessageBox.Abstracciones;
 using WinFormsClient.Repositorio;
 
 namespace WinFormsClient
@@ -33,22 +34,29 @@ namespace WinFormsClient
                     if (user is not null)
                     {
                         string cadena = SecurityIntelix.DescrifrarCadena(user.Llave);
-                        string[] camposLlave = cadena.Split(new string[] { "@@" }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] camposLlave = cadena.Split(new[] { "@@" }, StringSplitOptions.RemoveEmptyEntries);
 
                         if (camposLlave[7] == txtContraseña.GetText().Trim())
                         {
+
                             Form formPersonas = Provider.GetRequiredService<FormPersonas>();
                             formPersonas.Show();
+                            this.Hide();
                         }
                         else
                         {
                             MessageBox.ShowError("Usuario o contraseña incorrectos");
                         }
                     }
+                    else
+                    {
+                        MessageBox.ShowError("Usuario o contraseña incorrectos");
+                    }
                 }
             }
             catch (Exception exception)
             {
+                Debug.WriteLine(exception.Message);
                 MessageBox.ShowError(exception);
             }
             finally

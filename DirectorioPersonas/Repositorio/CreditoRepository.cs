@@ -11,6 +11,7 @@ public class CreditoRepository : ICreditoRepository
             .Include(socio => socio.Socio)
             .ThenInclude(socio => socio.Persona)
             .Include(credito => credito.Socio.Sucursal)
+            .Include(credito => credito.TipoCredito)
             .Where(credito => credito.IdEstatus == 1 && credito.IdTipoDProducto == 143)
             .ToListAsync();
     }
