@@ -24,7 +24,6 @@ namespace WinFormsClient.DependencyInjection
             });
 
             serviceCollection.AddScoped<IPersonaRepository, PersonaRepository>();
-            serviceCollection.AddScoped<ISocioRepository, SocioRepository>();
             serviceCollection.AddScoped<ICreditoRepository, CreditoRepository>();
             serviceCollection.AddScoped<IDomicilioRepository, DomicilioRepository>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
