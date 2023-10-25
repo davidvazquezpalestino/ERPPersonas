@@ -12,6 +12,8 @@ public class Credito
     public Socio Socio { get; set; }
     public int IdTipoDAIC { get; set; }
     public TipoDetalle TipoCredito { get; set; }
-
+    
+    [NotMapped]
+    public bool CambioValor { get; set; }
     public string Periodo => $"{FechaEntrega.Year}-{FechaEntrega.Month.ToString().PadLeft(2, '0')}";
 }

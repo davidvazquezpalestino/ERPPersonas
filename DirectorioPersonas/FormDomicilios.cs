@@ -1,5 +1,4 @@
-﻿using CoreMessageBox.Abstracciones;
-using Serilog;
+﻿using Serilog;
 
 namespace WinFormsClient
 {

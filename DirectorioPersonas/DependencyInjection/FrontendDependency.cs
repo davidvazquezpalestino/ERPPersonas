@@ -1,5 +1,5 @@
-﻿using CoreMessageBox.Abstracciones;
-using CoreMessageBox.Servicios;
+﻿using CoreMessageBox.Servicios;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using WinFormsClient.Repositorio;
 
@@ -7,7 +7,7 @@ namespace WinFormsClient.DependencyInjection
 {
     public static class FrontendDependency
     {
-        public static IServiceCollection AddFrontendServices(this IServiceCollection serviceCollection, 
+        public static IServiceCollection AddFrontendServices(this IServiceCollection serviceCollection,
             IConfiguration configuration)
         {
             serviceCollection.AddDbContextFactory<Repository>(options =>
@@ -20,6 +20,7 @@ namespace WinFormsClient.DependencyInjection
 
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
+                    options.LogTo(Console.WriteLine, LogLevel.Information);
                 }
             });
 
@@ -28,7 +29,7 @@ namespace WinFormsClient.DependencyInjection
             serviceCollection.AddScoped<IDomicilioRepository, DomicilioRepository>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
-            
+
             serviceCollection.AddSingleton<FormPersonas>();
             serviceCollection.AddTransient<FormDomicilios>();
             serviceCollection.AddSingleton<IMessageBox<DialogResult>, WindowsMessageBox>();
@@ -38,7 +39,7 @@ namespace WinFormsClient.DependencyInjection
                 .MinimumLevel.Debug()
                 .WriteTo.File($"{Application.StartupPath}\\ApplicationLog.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7);
 
-            serviceCollection.AddSingleton<ILogger>(loggerConfiguration.CreateLogger());
+            serviceCollection.AddSingleton<Serilog.ILogger>(loggerConfiguration.CreateLogger());
 
             serviceCollection.AddSingleton<ISecurityBase64, SecurityBase64>();
             serviceCollection.AddSingleton<ISecurityIntelix, SecurityIntelix>();
