@@ -1,10 +1,9 @@
 ﻿namespace WinFormsClient.Repositorio;
 
-public class CreditoRepository : ICreditoRepository
+public class CreditoRepository(IDbContextFactory<Repository> repository) : ICreditoRepository
 {
-    private readonly Repository Repository;
-    public CreditoRepository(IDbContextFactory<Repository> repository) => 
-        Repository = repository.CreateDbContext();
+    private readonly Repository Repository = repository.CreateDbContext();
+
     public async Task<IEnumerable<Credito>> GetCreditosAsync()
     {
         return await Repository.Set<Credito>()

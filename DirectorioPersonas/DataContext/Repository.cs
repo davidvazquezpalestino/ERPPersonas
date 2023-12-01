@@ -1,9 +1,7 @@
 ﻿namespace WinFormsClient.DataContext;
 
-public class Repository : DbContext
+public class Repository(DbContextOptions<Repository> options) : DbContext(options)
 {
-    public Repository(DbContextOptions<Repository> options) : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Persona>().ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);

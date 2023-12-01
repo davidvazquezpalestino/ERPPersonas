@@ -1,10 +1,8 @@
 ﻿namespace WinFormsClient.Repositorio;
 
-public class PersonaRepository : IPersonaRepository
+public class PersonaRepository(IDbContextFactory<Repository> repository) : IPersonaRepository
 {
-    private readonly Repository Repository;
-    public PersonaRepository(IDbContextFactory<Repository> repository) => 
-        Repository = repository.CreateDbContext();
+    private readonly Repository Repository = repository.CreateDbContext();
 
     public async Task<IEnumerable<Persona>> GetPersonsAsync()
     {

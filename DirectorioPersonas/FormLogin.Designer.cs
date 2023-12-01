@@ -86,7 +86,7 @@
             // pictureEdit1
             // 
             pictureEdit1.EditValue = resources.GetObject("pictureEdit1.EditValue");
-            pictureEdit1.Location = new System.Drawing.Point(3, 36);
+            pictureEdit1.Location = new System.Drawing.Point(3, 35);
             pictureEdit1.Margin = new Padding(4, 3, 4, 3);
             pictureEdit1.Name = "pictureEdit1";
             pictureEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -94,13 +94,13 @@
             pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            pictureEdit1.Size = new System.Drawing.Size(102, 75);
+            pictureEdit1.Size = new System.Drawing.Size(102, 73);
             pictureEdit1.StyleController = layoutControl1;
             pictureEdit1.TabIndex = 8;
             // 
             // btnSalir
             // 
-            btnSalir.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnSalir.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             btnSalir.Appearance.ForeColor = System.Drawing.Color.Blue;
             btnSalir.Appearance.Options.UseFont = true;
             btnSalir.Appearance.Options.UseForeColor = true;
@@ -115,7 +115,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnAceptar.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             btnAceptar.Appearance.ForeColor = System.Drawing.Color.Blue;
             btnAceptar.Appearance.Options.UseFont = true;
             btnAceptar.Appearance.Options.UseForeColor = true;
@@ -132,10 +132,10 @@
             // txtContraseña
             // 
             txtContraseña.EnterMoveNextControl = true;
-            txtContraseña.Location = new System.Drawing.Point(187, 68);
+            txtContraseña.Location = new System.Drawing.Point(187, 67);
             txtContraseña.Margin = new Padding(4, 3, 4, 3);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            txtContraseña.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             txtContraseña.Properties.Appearance.Options.UseFont = true;
             txtContraseña.Properties.PasswordChar = '*';
             txtContraseña.Size = new System.Drawing.Size(310, 28);
@@ -146,10 +146,10 @@
             // 
             txtUsurio.EditValue = "";
             txtUsurio.EnterMoveNextControl = true;
-            txtUsurio.Location = new System.Drawing.Point(187, 36);
+            txtUsurio.Location = new System.Drawing.Point(187, 35);
             txtUsurio.Margin = new Padding(4, 3, 4, 3);
             txtUsurio.Name = "txtUsurio";
-            txtUsurio.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            txtUsurio.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             txtUsurio.Properties.Appearance.Options.UseFont = true;
             txtUsurio.Size = new System.Drawing.Size(310, 28);
             txtUsurio.StyleController = layoutControl1;
@@ -167,12 +167,12 @@
             // 
             // layoutControlItem1
             // 
-            layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
             layoutControlItem1.AppearanceItemCaption.Options.UseTextOptions = true;
             layoutControlItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             layoutControlItem1.Control = txtUsurio;
-            layoutControlItem1.Location = new System.Drawing.Point(106, 33);
+            layoutControlItem1.Location = new System.Drawing.Point(106, 32);
             layoutControlItem1.Name = "layoutControlItem1";
             layoutControlItem1.Size = new System.Drawing.Size(392, 32);
             layoutControlItem1.Text = "Usuario";
@@ -180,12 +180,12 @@
             // 
             // layoutControlItem2
             // 
-            layoutControlItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            layoutControlItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             layoutControlItem2.AppearanceItemCaption.Options.UseFont = true;
             layoutControlItem2.AppearanceItemCaption.Options.UseTextOptions = true;
             layoutControlItem2.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             layoutControlItem2.Control = txtContraseña;
-            layoutControlItem2.Location = new System.Drawing.Point(106, 65);
+            layoutControlItem2.Location = new System.Drawing.Point(106, 64);
             layoutControlItem2.Name = "layoutControlItem2";
             layoutControlItem2.Size = new System.Drawing.Size(392, 32);
             layoutControlItem2.Text = "Contraseña";
@@ -220,15 +220,15 @@
             // emptySpaceItem2
             // 
             emptySpaceItem2.AllowHotTrack = false;
-            emptySpaceItem2.Location = new System.Drawing.Point(106, 97);
+            emptySpaceItem2.Location = new System.Drawing.Point(106, 96);
             emptySpaceItem2.Name = "emptySpaceItem2";
-            emptySpaceItem2.Size = new System.Drawing.Size(392, 15);
+            emptySpaceItem2.Size = new System.Drawing.Size(392, 13);
             emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleSeparator1
             // 
             simpleSeparator1.AllowHotTrack = false;
-            simpleSeparator1.Location = new System.Drawing.Point(0, 112);
+            simpleSeparator1.Location = new System.Drawing.Point(0, 109);
             simpleSeparator1.Name = "simpleSeparator1";
             simpleSeparator1.Size = new System.Drawing.Size(498, 4);
             simpleSeparator1.Spacing = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
@@ -236,9 +236,9 @@
             // layoutControlItem5
             // 
             layoutControlItem5.Control = pictureEdit1;
-            layoutControlItem5.Location = new System.Drawing.Point(0, 33);
+            layoutControlItem5.Location = new System.Drawing.Point(0, 32);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new System.Drawing.Size(106, 79);
+            layoutControlItem5.Size = new System.Drawing.Size(106, 77);
             layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem5.TextVisible = false;
             // 
@@ -247,23 +247,23 @@
             emptySpaceItem1.AllowHotTrack = false;
             emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(498, 33);
+            emptySpaceItem1.Size = new System.Drawing.Size(498, 32);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
             // 
             emptySpaceItem3.AllowHotTrack = false;
-            emptySpaceItem3.Location = new System.Drawing.Point(0, 135);
+            emptySpaceItem3.Location = new System.Drawing.Point(0, 131);
             emptySpaceItem3.Name = "emptySpaceItem3";
-            emptySpaceItem3.Size = new System.Drawing.Size(184, 28);
+            emptySpaceItem3.Size = new System.Drawing.Size(184, 32);
             emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
             // 
             emptySpaceItem4.AllowHotTrack = false;
-            emptySpaceItem4.Location = new System.Drawing.Point(0, 116);
+            emptySpaceItem4.Location = new System.Drawing.Point(0, 113);
             emptySpaceItem4.Name = "emptySpaceItem4";
-            emptySpaceItem4.Size = new System.Drawing.Size(498, 19);
+            emptySpaceItem4.Size = new System.Drawing.Size(498, 18);
             emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // FormLogin

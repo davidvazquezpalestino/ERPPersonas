@@ -21,6 +21,8 @@ namespace WinFormsClient.DependencyInjection
                     options.EnableDetailedErrors();
                     options.EnableSensitiveDataLogging();
                     options.LogTo(Console.WriteLine, LogLevel.Information);
+
+                   // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 }
             });
 
