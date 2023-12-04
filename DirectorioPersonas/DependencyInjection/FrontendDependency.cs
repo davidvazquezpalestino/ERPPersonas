@@ -22,7 +22,7 @@ namespace WinFormsClient.DependencyInjection
                     options.EnableSensitiveDataLogging();
                     options.LogTo(Console.WriteLine, LogLevel.Information);
 
-                   // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 }
             });
 
