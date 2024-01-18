@@ -2,12 +2,14 @@
 global using System;
 global using System.Collections.Generic;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Diagnostics;
 global using System.Linq;
 global using System.Linq.Expressions;
 global using System.Threading;
 global using System.Threading.Tasks;
 global using System.Windows.Forms;
 global using CoreControlesUsuario.Servicios;
+global using CoreInterfaces;
 global using CoreMessageBox.Abstracciones;
 global using CoreUtilerias.Abstracciones;
 global using CoreUtilerias.Servicios;

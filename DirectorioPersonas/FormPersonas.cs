@@ -5,7 +5,7 @@
         private readonly IPersonaRepository PersonaRepository;
         private readonly ICreditoRepository CreditoRepository;
         private readonly IMessageBox<DialogResult> MessageBox;
-
+        public int SucursalID;
         public FormPersonas(IPersonaRepository personaRepository,
             ICreditoRepository creditoRepository,
             IMessageBox<DialogResult> messageBox)
@@ -38,7 +38,11 @@
             {
                 this.Cursor = Cursors.WaitCursor;
                 ButtonQuery.Enabled = false;
-                IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync();
+                IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync(credito =>
+                     new[] { 1, 53, 73 }.Contains(credito.IdEstatus) &&
+                     credito.IdTipoDProducto == 143 &&
+                     credito.IdSucursal == SucursalID);
+
                 gridControlCuentas.SetItems(creditos);
             }
             finally
@@ -60,16 +64,19 @@
                         .Select(credito => credito.Socio.Persona)
                         .ToList();
 
-                    await Task.WhenAll(
-                        Task.Run(async () =>
-                        {
-                            await PersonaRepository.UpdatePersonAsync(personas);
-                            MessageBox.ShowMessage("Los cambios se guardarón");
-                        }),
-                        Task.Run(() => gridControlCuentas
-                            .Invoke(new Action(async () => gridControlCuentas
-                                .SetItems(await CreditoRepository
-                                    .GetCreditosAsync())))));
+                    if (personas.Count > 0)
+                    {
+                        await Task.Run(async () =>
+                            {
+                                await PersonaRepository.UpdatePersonAsync(personas);
+                                MessageBox.ShowMessage("Los cambios se guardarón");
+
+                                await Task.Run(() => gridControlCuentas
+                                     .Invoke(new Action(async () => gridControlCuentas.SetItems(
+                                         await CreditoRepository.GetCreditosAsync(credito => new[] { 1, 53, 73 }.Contains(credito.IdEstatus) && credito.IdTipoDProducto == 143 && credito.IdSucursal == SucursalID)))));
+                            });
+
+                    }
                 }
             }
             catch (Exception exception)

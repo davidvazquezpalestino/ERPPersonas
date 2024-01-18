@@ -46,21 +46,22 @@
             colRFC = new DevExpress.XtraGrid.Columns.GridColumn();
             colRegimenFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             colCodigoPostal = new DevExpress.XtraGrid.Columns.GridColumn();
+            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             personaBindingSource = new BindingSource(components);
+            defaultLookAndFeel1 = new DefaultLookAndFeel(components);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
             SuspendLayout();
@@ -71,36 +72,38 @@
             layoutControl1.Controls.Add(ButtonUpdate);
             layoutControl1.Controls.Add(gridControlCuentas);
             layoutControl1.Dock = DockStyle.Fill;
+            layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3 });
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1061, 617);
+            layoutControl1.Size = new System.Drawing.Size(1045, 615);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
             // ButtonQuery
             // 
             ButtonQuery.Appearance.BackColor = DXSkinColors.FillColors.Primary;
-            ButtonQuery.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            ButtonQuery.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             ButtonQuery.Appearance.Options.UseBackColor = true;
             ButtonQuery.Appearance.Options.UseFont = true;
-            ButtonQuery.Location = new System.Drawing.Point(792, 3);
+            ButtonQuery.Location = new System.Drawing.Point(780, 3);
             ButtonQuery.Name = "ButtonQuery";
-            ButtonQuery.Size = new System.Drawing.Size(126, 28);
+            ButtonQuery.Size = new System.Drawing.Size(124, 28);
             ButtonQuery.StyleController = layoutControl1;
             ButtonQuery.TabIndex = 0;
             ButtonQuery.Text = "Actualizar";
+            ButtonQuery.Visible = false;
             ButtonQuery.Click += ButtonQuery_Click;
             // 
             // ButtonUpdate
             // 
             ButtonUpdate.Appearance.BackColor = DXSkinColors.FillColors.Primary;
-            ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             ButtonUpdate.Appearance.Options.UseBackColor = true;
             ButtonUpdate.Appearance.Options.UseFont = true;
-            ButtonUpdate.Location = new System.Drawing.Point(922, 3);
+            ButtonUpdate.Location = new System.Drawing.Point(781, 4);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new System.Drawing.Size(136, 28);
+            ButtonUpdate.Size = new System.Drawing.Size(260, 28);
             ButtonUpdate.StyleController = layoutControl1;
             ButtonUpdate.TabIndex = 2;
             ButtonUpdate.Text = "Guardar";
@@ -109,10 +112,10 @@
             // gridControlCuentas
             // 
             gridControlCuentas.DataSource = creditoBindingSource;
-            gridControlCuentas.Location = new System.Drawing.Point(3, 35);
+            gridControlCuentas.Location = new System.Drawing.Point(4, 38);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
-            gridControlCuentas.Size = new System.Drawing.Size(1055, 579);
+            gridControlCuentas.Size = new System.Drawing.Size(1037, 573);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
@@ -227,56 +230,60 @@
             colCodigoPostal.VisibleIndex = 10;
             colCodigoPostal.Width = 100;
             // 
+            // layoutControlItem3
+            // 
+            layoutControlItem3.Control = ButtonQuery;
+            layoutControlItem3.Location = new System.Drawing.Point(777, 0);
+            layoutControlItem3.Name = "layoutControlItem3";
+            layoutControlItem3.Size = new System.Drawing.Size(128, 32);
+            layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            layoutControlItem3.TextVisible = false;
+            // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, emptySpaceItem1 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, emptySpaceItem1 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            Root.Size = new System.Drawing.Size(1061, 617);
+            Root.Size = new System.Drawing.Size(1045, 615);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlCuentas;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 32);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 34);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(1059, 583);
+            layoutControlItem1.Size = new System.Drawing.Size(1043, 579);
             layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = ButtonUpdate;
-            layoutControlItem2.Location = new System.Drawing.Point(919, 0);
+            layoutControlItem2.Location = new System.Drawing.Point(777, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(140, 32);
+            layoutControlItem2.Size = new System.Drawing.Size(266, 34);
             layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            layoutControlItem3.Control = ButtonQuery;
-            layoutControlItem3.Location = new System.Drawing.Point(789, 0);
-            layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new System.Drawing.Size(130, 32);
-            layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             emptySpaceItem1.AllowHotTrack = false;
             emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(789, 32);
+            emptySpaceItem1.Size = new System.Drawing.Size(777, 34);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // defaultLookAndFeel1
+            // 
+            defaultLookAndFeel1.LookAndFeel.SkinName = "WXI";
             // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1061, 617);
+            ClientSize = new System.Drawing.Size(1045, 615);
             Controls.Add(layoutControl1);
             Name = "FormPersonas";
             Text = "Créditos";
@@ -287,10 +294,10 @@
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
             ResumeLayout(false);
@@ -321,6 +328,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn ColPeriodo;
         private DevExpress.XtraGrid.Columns.GridColumn ColClasificacionCredito;
+        private DefaultLookAndFeel defaultLookAndFeel1;
     }
 }
 

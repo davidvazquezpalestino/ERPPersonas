@@ -2,5 +2,5 @@
 
 public interface ICreditoRepository
 {
-    Task<IEnumerable<Credito>> GetCreditosAsync();
+    Task<IEnumerable<Credito>> GetCreditosAsync(Expression<Func<Credito, bool>> expression);
 }

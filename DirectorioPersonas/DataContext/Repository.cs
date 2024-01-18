@@ -34,8 +34,6 @@ public class Repository(DbContextOptions<Repository> options) : DbContext(option
                   .HasOne(td => td.TipoCredito)
                 .WithMany()
                 .HasForeignKey(td => td.IdTipoDAIC);
-
-
         });
 
         modelBuilder.Entity<Domicilios>(builder =>

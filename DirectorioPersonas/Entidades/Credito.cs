@@ -12,6 +12,7 @@ public class Credito
     public Socio Socio { get; set; }
     public int IdTipoDAIC { get; set; }
     public TipoDetalle TipoCredito { get; set; }
+    public int IdSucursal { get; set; }
     
     [NotMapped]
     public bool CambioValor { get; set; }
