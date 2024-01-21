@@ -75,7 +75,6 @@
                                      .Invoke(new Action(async () => gridControlCuentas.SetItems(
                                          await CreditoRepository.GetCreditosAsync(credito => new[] { 1, 53, 73 }.Contains(credito.IdEstatus) && credito.IdTipoDProducto == 143 && credito.IdSucursal == SucursalID)))));
                             });
-
                     }
                 }
             }
