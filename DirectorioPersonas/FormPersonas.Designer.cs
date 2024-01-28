@@ -35,14 +35,12 @@
             gridControlCuentas = new DevExpress.XtraGrid.GridControl();
             creditoBindingSource = new BindingSource(components);
             gridViewCuentas = new DevExpress.XtraGrid.Views.Grid.GridView();
-            colPersona = new DevExpress.XtraGrid.Columns.GridColumn();
             ColClasificacionCredito = new DevExpress.XtraGrid.Columns.GridColumn();
             ColPeriodo = new DevExpress.XtraGrid.Columns.GridColumn();
             colSucursal = new DevExpress.XtraGrid.Columns.GridColumn();
             colSocio = new DevExpress.XtraGrid.Columns.GridColumn();
             colCredito = new DevExpress.XtraGrid.Columns.GridColumn();
             colRazonSocial = new DevExpress.XtraGrid.Columns.GridColumn();
-            colDomicilio = new DevExpress.XtraGrid.Columns.GridColumn();
             colRFC = new DevExpress.XtraGrid.Columns.GridColumn();
             colRegimenFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             colCodigoPostal = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -76,7 +74,7 @@
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1045, 615);
+            layoutControl1.Size = new System.Drawing.Size(1037, 617);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -101,9 +99,9 @@
             ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             ButtonUpdate.Appearance.Options.UseBackColor = true;
             ButtonUpdate.Appearance.Options.UseFont = true;
-            ButtonUpdate.Location = new System.Drawing.Point(781, 4);
+            ButtonUpdate.Location = new System.Drawing.Point(888, 3);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new System.Drawing.Size(260, 28);
+            ButtonUpdate.Size = new System.Drawing.Size(146, 28);
             ButtonUpdate.StyleController = layoutControl1;
             ButtonUpdate.TabIndex = 2;
             ButtonUpdate.Text = "Guardar";
@@ -112,16 +110,16 @@
             // gridControlCuentas
             // 
             gridControlCuentas.DataSource = creditoBindingSource;
-            gridControlCuentas.Location = new System.Drawing.Point(4, 38);
+            gridControlCuentas.Location = new System.Drawing.Point(3, 35);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
-            gridControlCuentas.Size = new System.Drawing.Size(1037, 573);
+            gridControlCuentas.Size = new System.Drawing.Size(1031, 579);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
             // gridViewCuentas
             // 
-            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colPersona, ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colDomicilio, colRFC, colRegimenFiscal, colCodigoPostal });
+            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal });
             gridViewCuentas.GridControl = gridControlCuentas;
             gridViewCuentas.Name = "gridViewCuentas";
             gridViewCuentas.OptionsSelection.MultiSelect = true;
@@ -130,22 +128,14 @@
             gridViewCuentas.OptionsView.ShowFooter = true;
             gridViewCuentas.OptionsView.ShowGroupPanel = false;
             // 
-            // colPersona
-            // 
-            colPersona.Caption = "Persona";
-            colPersona.FieldName = "Socio.Persona.IdPersona";
-            colPersona.Name = "colPersona";
-            colPersona.OptionsColumn.AllowEdit = false;
-            colPersona.Visible = true;
-            colPersona.VisibleIndex = 0;
-            // 
             // ColClasificacionCredito
             // 
             ColClasificacionCredito.Caption = "Clasificación";
             ColClasificacionCredito.FieldName = "TipoCredito.Descripcion";
             ColClasificacionCredito.Name = "ColClasificacionCredito";
             ColClasificacionCredito.Visible = true;
-            ColClasificacionCredito.VisibleIndex = 1;
+            ColClasificacionCredito.VisibleIndex = 0;
+            ColClasificacionCredito.Width = 65;
             // 
             // ColPeriodo
             // 
@@ -153,7 +143,8 @@
             ColPeriodo.FieldName = "Periodo";
             ColPeriodo.Name = "ColPeriodo";
             ColPeriodo.Visible = true;
-            ColPeriodo.VisibleIndex = 2;
+            ColPeriodo.VisibleIndex = 1;
+            ColPeriodo.Width = 65;
             // 
             // colSucursal
             // 
@@ -162,7 +153,8 @@
             colSucursal.Name = "colSucursal";
             colSucursal.OptionsColumn.AllowEdit = false;
             colSucursal.Visible = true;
-            colSucursal.VisibleIndex = 3;
+            colSucursal.VisibleIndex = 2;
+            colSucursal.Width = 65;
             // 
             // colSocio
             // 
@@ -171,7 +163,8 @@
             colSocio.Name = "colSocio";
             colSocio.OptionsColumn.AllowEdit = false;
             colSocio.Visible = true;
-            colSocio.VisibleIndex = 4;
+            colSocio.VisibleIndex = 3;
+            colSocio.Width = 65;
             // 
             // colCredito
             // 
@@ -180,7 +173,8 @@
             colCredito.Name = "colCredito";
             colCredito.OptionsColumn.AllowEdit = false;
             colCredito.Visible = true;
-            colCredito.VisibleIndex = 5;
+            colCredito.VisibleIndex = 4;
+            colCredito.Width = 65;
             // 
             // colRazonSocial
             // 
@@ -189,18 +183,8 @@
             colRazonSocial.Name = "colRazonSocial";
             colRazonSocial.OptionsColumn.AllowEdit = false;
             colRazonSocial.Visible = true;
-            colRazonSocial.VisibleIndex = 6;
-            colRazonSocial.Width = 250;
-            // 
-            // colDomicilio
-            // 
-            colDomicilio.Caption = "Domicilio";
-            colDomicilio.FieldName = "Socio.Persona.Domicilio";
-            colDomicilio.Name = "colDomicilio";
-            colDomicilio.OptionsColumn.AllowEdit = false;
-            colDomicilio.Visible = true;
-            colDomicilio.VisibleIndex = 7;
-            colDomicilio.Width = 400;
+            colRazonSocial.VisibleIndex = 5;
+            colRazonSocial.Width = 174;
             // 
             // colRFC
             // 
@@ -209,8 +193,8 @@
             colRFC.Name = "colRFC";
             colRFC.OptionsColumn.AllowEdit = false;
             colRFC.Visible = true;
-            colRFC.VisibleIndex = 8;
-            colRFC.Width = 100;
+            colRFC.VisibleIndex = 6;
+            colRFC.Width = 109;
             // 
             // colRegimenFiscal
             // 
@@ -218,8 +202,8 @@
             colRegimenFiscal.FieldName = "Socio.Persona.RegimenFiscal";
             colRegimenFiscal.Name = "colRegimenFiscal";
             colRegimenFiscal.Visible = true;
-            colRegimenFiscal.VisibleIndex = 9;
-            colRegimenFiscal.Width = 100;
+            colRegimenFiscal.VisibleIndex = 7;
+            colRegimenFiscal.Width = 124;
             // 
             // colCodigoPostal
             // 
@@ -227,8 +211,8 @@
             colCodigoPostal.FieldName = "Socio.Persona.CodigoPostal";
             colCodigoPostal.Name = "colCodigoPostal";
             colCodigoPostal.Visible = true;
-            colCodigoPostal.VisibleIndex = 10;
-            colCodigoPostal.Width = 100;
+            colCodigoPostal.VisibleIndex = 8;
+            colCodigoPostal.Width = 115;
             // 
             // layoutControlItem3
             // 
@@ -246,24 +230,24 @@
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, emptySpaceItem1 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            Root.Size = new System.Drawing.Size(1045, 615);
+            Root.Size = new System.Drawing.Size(1037, 617);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlCuentas;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 34);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(1043, 579);
+            layoutControlItem1.Size = new System.Drawing.Size(1035, 583);
             layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = ButtonUpdate;
-            layoutControlItem2.Location = new System.Drawing.Point(777, 0);
+            layoutControlItem2.Location = new System.Drawing.Point(885, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(266, 34);
+            layoutControlItem2.Size = new System.Drawing.Size(150, 32);
             layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem2.TextVisible = false;
             // 
@@ -272,18 +256,18 @@
             emptySpaceItem1.AllowHotTrack = false;
             emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(777, 34);
+            emptySpaceItem1.Size = new System.Drawing.Size(885, 32);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // defaultLookAndFeel1
             // 
-            defaultLookAndFeel1.LookAndFeel.SkinName = "WXI";
+            defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
             // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1045, 615);
+            ClientSize = new System.Drawing.Size(1037, 617);
             Controls.Add(layoutControl1);
             Name = "FormPersonas";
             Text = "Créditos";
@@ -313,14 +297,12 @@
         private BindingSource personaBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colRazonSocial;
         private DevExpress.XtraGrid.Columns.GridColumn colRFC;
-        private DevExpress.XtraGrid.Columns.GridColumn colDomicilio;
         private DevExpress.XtraGrid.Columns.GridColumn colRegimenFiscal;
         private DevExpress.XtraGrid.Columns.GridColumn colCodigoPostal;
         private BindingSource creditoBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colSocio;
         private DevExpress.XtraGrid.Columns.GridColumn colSucursal;
         private DevExpress.XtraGrid.Columns.GridColumn colCredito;
-        private DevExpress.XtraGrid.Columns.GridColumn colPersona;
         private SimpleButton ButtonUpdate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private SimpleButton ButtonQuery;

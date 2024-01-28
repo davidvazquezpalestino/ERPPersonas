@@ -13,7 +13,7 @@ public class Credito
     public int IdTipoDAIC { get; set; }
     public TipoDetalle TipoCredito { get; set; }
     public int IdSucursal { get; set; }
-    
+    public bool ExentaIVA { get; set; }
     [NotMapped]
     public bool CambioValor { get; set; }
     public string Periodo => $"{FechaEntrega.Year}-{FechaEntrega.Month.ToString().PadLeft(2, '0')}";

@@ -97,9 +97,9 @@
             ComboBoxSucursal.Name = "ComboBoxSucursal";
             ComboBoxSucursal.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             ComboBoxSucursal.Properties.Appearance.Options.UseFont = true;
-            ComboBoxSucursal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            ComboBoxSucursal.Properties.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo) });
             ComboBoxSucursal.Properties.CharacterCasing = CharacterCasing.Upper;
-            ComboBoxSucursal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            ComboBoxSucursal.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             ComboBoxSucursal.Size = new System.Drawing.Size(314, 24);
             ComboBoxSucursal.StyleController = layoutControl1;
             ComboBoxSucursal.TabIndex = 9;
@@ -112,9 +112,9 @@
             pictureEdit1.Name = "pictureEdit1";
             pictureEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
             pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            pictureEdit1.Properties.BorderStyle = BorderStyles.NoBorder;
+            pictureEdit1.Properties.ShowCameraMenuItem = CameraMenuItemVisibility.Auto;
+            pictureEdit1.Properties.SizeMode = PictureSizeMode.Zoom;
             pictureEdit1.Size = new System.Drawing.Size(102, 101);
             pictureEdit1.StyleController = layoutControl1;
             pictureEdit1.TabIndex = 8;
