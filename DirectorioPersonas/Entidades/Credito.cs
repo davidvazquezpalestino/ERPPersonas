@@ -16,5 +16,4 @@ public class Credito
     public bool ExentaIVA { get; set; }
     [NotMapped]
     public bool CambioValor { get; set; }
-    public string Periodo => $"{FechaEntrega.Year}-{FechaEntrega.Month.ToString().PadLeft(2, '0')}";
 }

@@ -8,6 +8,8 @@
         public int SucursalID;
 
         readonly RepositoryItemLookUpEdit RepositoryCombo = new RepositoryItemLookUpEdit();
+        private static readonly int[] EstatusCreditos = [1, 53, 73];
+
         public FormPersonas(IPersonaRepository personaRepository,
             ICreditoRepository creditoRepository,
             IMessageBox<DialogResult> messageBox)
@@ -34,7 +36,6 @@
         {
             await ListarCreditos();
             RepositoryCombo.TextEditStyle = TextEditStyles.DisableTextEditor;
-  
         }
 
         private async Task ListarCreditos()
@@ -44,7 +45,13 @@
                 this.Cursor = Cursors.WaitCursor;
                 ButtonQuery.Enabled = false;
 
-                ICollection<CatalogoRegimenFiscal> regimenFiscals = await GetRegimenFiscalAsync();
+                ICollection<CatalogoRegimenFiscal> regimenFiscals = new List<CatalogoRegimenFiscal>();
+                IEnumerable<Credito> creditos = new List<Credito>();
+
+                await Task.WhenAll(
+                    Task.Run(async () => regimenFiscals = await GetRegimenFiscalAsync()),
+                    Task.Run(async () => creditos = await GetCreditosAsync()));
+
                 RepositoryCombo.DataSource = regimenFiscals;
 
                 gridControlCuentas.RepositoryItems.Add(RepositoryCombo);
@@ -52,12 +59,6 @@
 
                 RepositoryCombo.DisplayMember = "Descripcion";
                 RepositoryCombo.ValueMember = "RegimenFiscal";
-                
-
-                IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync(credito =>
-                    new[] { 1, 53, 73 }.Contains(credito.IdEstatus) &&
-                    credito.IdTipoDProducto == 143 &&
-                    credito.IdSucursal == SucursalID);
 
                 gridControlCuentas.SetItems(creditos);
                 RepositoryCombo.NullText = "";
@@ -93,10 +94,7 @@
                             await PersonaRepository.UpdatePersonAsync(personas);
                             MessageBox.ShowMessage("Los cambios se guardarón");
 
-                            await Task.Run(() => gridControlCuentas.Invoke(new Action(async () => gridControlCuentas.SetItems(
-                                    await CreditoRepository.GetCreditosAsync(credito =>
-                                        new[] { 1, 53, 73 }.Contains(credito.IdEstatus) &&
-                                        credito.IdTipoDProducto == 143 && credito.IdSucursal == SucursalID)))));
+                            await Task.Run(() => gridControlCuentas.Invoke(new Action(async () => gridControlCuentas.SetItems(await GetCreditosAsync()))));
                         });
                     }
                 }
@@ -107,27 +105,29 @@
             }
         }
 
+        private async Task<IEnumerable<Credito>> GetCreditosAsync()
+        {
+            return await CreditoRepository.GetCreditosAsync(credito => 
+                EstatusCreditos.Contains(credito.IdEstatus) &&
+                credito.IdTipoDProducto == 143 && (credito.Socio.Persona.EsPersonaMoral == false && credito.ExentaIVA || credito.Socio.Persona.EsPersonaMoral) &&
+                credito.IdSucursal == SucursalID);
+        }
+
         private async void ButtonQuery_Click(object sender, EventArgs e) => await ListarCreditos();
 
         public async Task<ICollection<CatalogoRegimenFiscal>> GetRegimenFiscalAsync()
         {
             using (HttpClient client = new HttpClient())
             {
-                try
-                {
-                    HttpResponseMessage response = await client.GetAsync(
-                        "https://integratepluscatalogossatapi.azurewebsites.net/api/RegimenFiscal/GetRegimenFiscalAsync");
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = await client.GetAsync(
+                    "https://integratepluscatalogossatapi.azurewebsites.net/api/RegimenFiscal/GetRegimenFiscalAsync");
 
-                        return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData, new JsonSerializerOptions(JsonSerializerDefaults.Web));
-                    }
-                }
-                catch (Exception ex)
+                if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    string responseData = await response.Content.ReadAsStringAsync();
+
+                    return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData, new JsonSerializerOptions(JsonSerializerDefaults.Web));
                 }
             }
 
