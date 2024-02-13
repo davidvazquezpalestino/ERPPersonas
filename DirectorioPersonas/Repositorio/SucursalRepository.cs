@@ -7,6 +7,7 @@ internal class SucursalRepository(IDbContextFactory<Repository> repository) : IS
     {
         return await Repository.Set<Sucursal>()
             .Where(expression)
+            .OrderBy(sucursal => sucursal.Descripcion)
             .ToListAsync();
     }
 }

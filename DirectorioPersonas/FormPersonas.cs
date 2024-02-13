@@ -5,21 +5,33 @@
         private readonly IPersonaRepository PersonaRepository;
         private readonly ICreditoRepository CreditoRepository;
         private readonly IMessageBox<DialogResult> MessageBox;
+        private readonly ISucursalRepository SucursalRepository;
         public int SucursalID;
+        public int UserID { get; set; }
 
         readonly RepositoryItemLookUpEdit RepositoryCombo = new RepositoryItemLookUpEdit();
         private static readonly int[] EstatusCreditos = [1, 53, 73];
 
         public FormPersonas(IPersonaRepository personaRepository,
             ICreditoRepository creditoRepository,
+            ISucursalRepository sucursalRepository,
             IMessageBox<DialogResult> messageBox)
         {
             PersonaRepository = personaRepository;
             CreditoRepository = creditoRepository;
+            SucursalRepository = sucursalRepository;
             MessageBox = messageBox;
             InitializeComponent();
 
             gridViewCuentas.CellValueChanging += GridViewCuentas_CellValueChanging;
+            lComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
+        }
+
+        private async void LComboBoxSucursales_SelectedValueChanged(object sender, EventArgs e)
+        {
+            IEnumerable<Credito> creditos = await GetCreditosAsync();
+            gridControlCuentas.SetItems(creditos);
+            gridViewCuentas.BestFitColumns();
         }
 
         private void GridViewCuentas_CellValueChanging(object sender,
@@ -34,8 +46,11 @@
 
         private async void FormPersonas_Load(object sender, System.EventArgs e)
         {
+            lComboBoxSucursales.SelectedValueChanged -= LComboBoxSucursales_SelectedValueChanged;
             await ListarCreditos();
+            lComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
             RepositoryCombo.TextEditStyle = TextEditStyles.DisableTextEditor;
+            lComboBoxSucursales.ReadOnly = UserID != -1;
         }
 
         private async Task ListarCreditos()
@@ -48,12 +63,17 @@
                 ICollection<CatalogoRegimenFiscal> regimenFiscals = new List<CatalogoRegimenFiscal>();
                 IEnumerable<Credito> creditos = new List<Credito>();
 
+                List<Sucursal> sucursales = (List<Sucursal>)await SucursalRepository.GetSucursalesAsync(sucursal =>
+                    new[] { 0, 1 }.Contains(sucursal.IdSucursal) == false);
+
+                lComboBoxSucursales.SetItems(sucursales);
+                lComboBoxSucursales.SetItem(SucursalID);
+
                 await Task.WhenAll(
                     Task.Run(async () => regimenFiscals = await GetRegimenFiscalAsync()),
                     Task.Run(async () => creditos = await GetCreditosAsync()));
 
                 RepositoryCombo.DataSource = regimenFiscals;
-
                 gridControlCuentas.RepositoryItems.Add(RepositoryCombo);
                 gridViewCuentas.Columns[colRegimenFiscal.FieldName].ColumnEdit = RepositoryCombo;
 
@@ -67,6 +87,8 @@
                 RepositoryCombo.BestFit();
 
                 gridViewCuentas.BestFitColumns();
+
+             
             }
             finally
             {
@@ -107,10 +129,10 @@
 
         private async Task<IEnumerable<Credito>> GetCreditosAsync()
         {
-            return await CreditoRepository.GetCreditosAsync(credito => 
+            return await CreditoRepository.GetCreditosAsync(credito =>
                 EstatusCreditos.Contains(credito.IdEstatus) &&
                 credito.IdTipoDProducto == 143 && (credito.Socio.Persona.EsPersonaMoral == false && credito.ExentaIVA || credito.Socio.Persona.EsPersonaMoral) &&
-                credito.IdSucursal == SucursalID);
+                credito.IdSucursal == lComboBoxSucursales.Principal<int>());
         }
 
         private async void ButtonQuery_Click(object sender, EventArgs e) => await ListarCreditos();

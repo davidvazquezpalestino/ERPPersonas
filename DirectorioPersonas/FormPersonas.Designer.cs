@@ -44,6 +44,7 @@
             colRFC = new DevExpress.XtraGrid.Columns.GridColumn();
             colRegimenFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             colCodigoPostal = new DevExpress.XtraGrid.Columns.GridColumn();
+            colMail = new DevExpress.XtraGrid.Columns.GridColumn();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -51,6 +52,8 @@
             emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             personaBindingSource = new BindingSource(components);
             defaultLookAndFeel1 = new DefaultLookAndFeel(components);
+            lComboBoxSucursales = new CoreControlesUsuario.UI.UserControlComboBoxEdit();
+            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).BeginInit();
@@ -62,10 +65,13 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lComboBoxSucursales.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(lComboBoxSucursales);
             layoutControl1.Controls.Add(ButtonQuery);
             layoutControl1.Controls.Add(ButtonUpdate);
             layoutControl1.Controls.Add(gridControlCuentas);
@@ -74,7 +80,7 @@
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1045, 615);
+            layoutControl1.Size = new System.Drawing.Size(1037, 617);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -99,9 +105,9 @@
             ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             ButtonUpdate.Appearance.Options.UseBackColor = true;
             ButtonUpdate.Appearance.Options.UseFont = true;
-            ButtonUpdate.Location = new System.Drawing.Point(896, 4);
+            ButtonUpdate.Location = new System.Drawing.Point(888, 3);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new System.Drawing.Size(145, 28);
+            ButtonUpdate.Size = new System.Drawing.Size(146, 28);
             ButtonUpdate.StyleController = layoutControl1;
             ButtonUpdate.TabIndex = 2;
             ButtonUpdate.Text = "Guardar";
@@ -110,16 +116,16 @@
             // gridControlCuentas
             // 
             gridControlCuentas.DataSource = creditoBindingSource;
-            gridControlCuentas.Location = new System.Drawing.Point(4, 38);
+            gridControlCuentas.Location = new System.Drawing.Point(3, 35);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
-            gridControlCuentas.Size = new System.Drawing.Size(1037, 573);
+            gridControlCuentas.Size = new System.Drawing.Size(1031, 579);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
             // gridViewCuentas
             // 
-            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal });
+            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal, colMail });
             gridViewCuentas.GridControl = gridControlCuentas;
             gridViewCuentas.Name = "gridViewCuentas";
             gridViewCuentas.OptionsSelection.MultiSelect = true;
@@ -215,6 +221,14 @@
             colCodigoPostal.VisibleIndex = 8;
             colCodigoPostal.Width = 115;
             // 
+            // colMail
+            // 
+            colMail.Caption = "Correo";
+            colMail.FieldName = "Socio.Persona.Email.Emails";
+            colMail.Name = "colMail";
+            colMail.Visible = true;
+            colMail.VisibleIndex = 9;
+            // 
             // layoutControlItem3
             // 
             layoutControlItem3.Control = ButtonQuery;
@@ -228,47 +242,77 @@
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, emptySpaceItem1 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, emptySpaceItem1, layoutControlItem4 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            Root.Size = new System.Drawing.Size(1045, 615);
+            Root.Size = new System.Drawing.Size(1037, 617);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlCuentas;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 34);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(1043, 579);
+            layoutControlItem1.Size = new System.Drawing.Size(1035, 583);
             layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = ButtonUpdate;
-            layoutControlItem2.Location = new System.Drawing.Point(892, 0);
+            layoutControlItem2.Location = new System.Drawing.Point(885, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(151, 34);
+            layoutControlItem2.Size = new System.Drawing.Size(150, 32);
             layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             emptySpaceItem1.AllowHotTrack = false;
-            emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            emptySpaceItem1.Location = new System.Drawing.Point(232, 0);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(892, 34);
+            emptySpaceItem1.Size = new System.Drawing.Size(653, 32);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // defaultLookAndFeel1
             // 
-            defaultLookAndFeel1.LookAndFeel.SkinName = "WXI";
+            defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
+            // 
+            // lComboBoxSucursales
+            // 
+            lComboBoxSucursales.CharacterCasing = CharacterCasing.Upper;
+            lComboBoxSucursales.EnterMoveNextControl = true;
+            lComboBoxSucursales.IgnoreReadOnly = false;
+            lComboBoxSucursales.Location = new System.Drawing.Point(66, 3);
+            lComboBoxSucursales.Name = "lComboBoxSucursales";
+            lComboBoxSucursales.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            lComboBoxSucursales.Properties.Appearance.Options.UseFont = true;
+            lComboBoxSucursales.Properties.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo) });
+            lComboBoxSucursales.Properties.CharacterCasing = CharacterCasing.Upper;
+            lComboBoxSucursales.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            lComboBoxSucursales.Size = new System.Drawing.Size(165, 24);
+            lComboBoxSucursales.StyleController = layoutControl1;
+            lComboBoxSucursales.TabIndex = 4;
+            // 
+            // layoutControlItem4
+            // 
+            layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 12F);
+            layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
+            layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
+            layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            layoutControlItem4.Control = lComboBoxSucursales;
+            layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            layoutControlItem4.Name = "layoutControlItem4";
+            layoutControlItem4.Size = new System.Drawing.Size(232, 32);
+            layoutControlItem4.Text = "Sucursal";
+            layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Left;
+            layoutControlItem4.TextSize = new System.Drawing.Size(59, 21);
             // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1045, 615);
+            ClientSize = new System.Drawing.Size(1037, 617);
             Controls.Add(layoutControl1);
             Name = "FormPersonas";
             Text = "Créditos";
@@ -285,6 +329,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lComboBoxSucursales.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ResumeLayout(false);
         }
 
@@ -312,6 +358,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColPeriodo;
         private DevExpress.XtraGrid.Columns.GridColumn ColClasificacionCredito;
         private DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.XtraGrid.Columns.GridColumn colMail;
+        private CoreControlesUsuario.UI.UserControlComboBoxEdit lComboBoxSucursales;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }
 

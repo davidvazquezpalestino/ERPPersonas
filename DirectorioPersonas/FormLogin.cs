@@ -39,6 +39,7 @@
                         {
                             FormPersonas formPersonas = Provider.GetRequiredService<FormPersonas>();
                             formPersonas.SucursalID = ComboBoxSucursal.Principal<int>();
+                            formPersonas.UserID = user.IdUsuario;
                             formPersonas.Show();
                             this.Hide();
                         }

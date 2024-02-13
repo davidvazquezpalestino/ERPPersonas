@@ -4,23 +4,33 @@ public class Repository(DbContextOptions<Repository> options) : DbContext(option
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Persona>().ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);
+
         modelBuilder.Entity<Sucursal>().ToTable("tCTLsucursales", "dbo").HasKey(sucursal => sucursal.IdSucursal);
         modelBuilder.Entity<TipoDetalle>().ToTable("tCTLtiposD", "dbo").HasKey(detalle => detalle.IdTipoD);
         modelBuilder.Entity<EstatusActual>().ToTable("tCTLestatusActual", "dbo").HasKey(estatusActual => estatusActual.IdEstatusActual);
         modelBuilder.Entity<User>().ToTable("tCTLusuarios", "dbo").HasKey(user => user.IdUsuario);
+        modelBuilder.Entity<Email>().ToView("vCATEmailsAgrupados", "dbo").HasKey(email => email.IdRel);
 
+        modelBuilder.Entity<Persona>(builder =>
+        {
+            builder.ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);
+            builder.HasOne(persona => persona.Email)
+                .WithMany()
+                .HasForeignKey(socio => socio.IdRelDomicilios);
+        });
 
         modelBuilder.Entity<Socio>(builder =>
         {
             builder.ToTable("tSCSsocios", "dbo").HasKey(socio => socio.IdSocio);
+
             builder.HasOne(socio => socio.Persona)
                 .WithMany()
                 .HasForeignKey(socio => socio.IdPersona);
+
             builder.HasOne(socio => socio.Sucursal)
                 .WithMany()
-
                 .HasForeignKey(socio => socio.IdSucursal);
+
         });
 
         modelBuilder.Entity<Credito>(builder =>
@@ -35,22 +45,5 @@ public class Repository(DbContextOptions<Repository> options) : DbContext(option
                 .WithMany()
                 .HasForeignKey(td => td.IdTipoDAIC);
         });
-
-        modelBuilder.Entity<Domicilios>(builder =>
-            {
-                builder.ToTable("tCATdomicilios", "dbo").HasKey(domicilio => domicilio.IdDomicilio);
-
-                builder.HasOne(domicilio => domicilio.TipoDetalle)
-                    .WithMany()
-                    .HasForeignKey(domicilio => domicilio.IdTipoD);
-
-                builder.HasOne(domicilio => domicilio.EstatusActual)
-                    .WithMany()
-                    .HasForeignKey(domicilio => domicilio.IdEstatusActual);
-
-                builder.Property(domicilio => domicilio.Domicilio)
-                    .HasComputedColumnSql("(concat([Calle],' ',[NumeroExterior],' ',[NumeroInterior],' ',[Asentamiento],' CP ',[CodigoPostal],' ',[Ciudad],' ',[Municipio],' ',[Estado])");
-            }
-        );
     }
 }
