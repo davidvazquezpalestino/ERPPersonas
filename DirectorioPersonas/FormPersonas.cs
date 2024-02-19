@@ -1,4 +1,6 @@
-﻿namespace WinFormsClient
+﻿using DevExpress.XtraEditors;
+
+namespace WinFormsClient
 {
     public partial class FormPersonas : XtraForm
     {
@@ -24,13 +26,15 @@
             InitializeComponent();
 
             gridViewCuentas.CellValueChanging += GridViewCuentas_CellValueChanging;
-            lComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
+            ComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
         }
 
         private async void LComboBoxSucursales_SelectedValueChanged(object sender, EventArgs e)
         {
             IEnumerable<Credito> creditos = await GetCreditosAsync();
+
             gridControlCuentas.SetItems(creditos);
+
             gridViewCuentas.BestFitColumns();
         }
 
@@ -46,11 +50,12 @@
 
         private async void FormPersonas_Load(object sender, System.EventArgs e)
         {
-            lComboBoxSucursales.SelectedValueChanged -= LComboBoxSucursales_SelectedValueChanged;
+            CheckForIllegalCrossThreadCalls = false;
+            ComboBoxSucursales.SelectedValueChanged -= LComboBoxSucursales_SelectedValueChanged;
             await ListarCreditos();
-            lComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
+            ComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
             RepositoryCombo.TextEditStyle = TextEditStyles.DisableTextEditor;
-            lComboBoxSucursales.ReadOnly = UserID != -1;
+            ComboBoxSucursales.ReadOnly = UserID != -1;
         }
 
         private async Task ListarCreditos()
@@ -66,8 +71,8 @@
                 List<Sucursal> sucursales = (List<Sucursal>)await SucursalRepository.GetSucursalesAsync(sucursal =>
                     new[] { 0, 1 }.Contains(sucursal.IdSucursal) == false);
 
-                lComboBoxSucursales.SetItems(sucursales);
-                lComboBoxSucursales.SetItem(SucursalID);
+                ComboBoxSucursales.SetItems(sucursales);
+                ComboBoxSucursales.SetItem(SucursalID);
 
                 await Task.WhenAll(
                     Task.Run(async () => regimenFiscals = await GetRegimenFiscalAsync()),
@@ -88,7 +93,7 @@
 
                 gridViewCuentas.BestFitColumns();
 
-             
+
             }
             finally
             {
@@ -104,10 +109,14 @@
                 IEnumerable<Credito> creditos = (IEnumerable<Credito>)gridControlCuentas.DataSource;
                 if (creditos is not null)
                 {
-                    List<Persona> personas = creditos
+                    List<PersonaCommand> personas = creditos
                         .Where(credito => credito.CambioValor)
-                        .Select(credito => credito.Socio.Persona)
-                        .ToList();
+                        .Select(credito => new PersonaCommand()
+                        {
+                            IdPersona = credito.Socio.Persona.IdPersona,
+                            CodigoPostal = credito.Socio.Persona.CodigoPostal,
+                            RegimenFiscal = credito.Socio.Persona.RegimenFiscal
+                        }).ToList();
 
                     if (personas.Count > 0)
                     {
@@ -116,7 +125,13 @@
                             await PersonaRepository.UpdatePersonAsync(personas);
                             MessageBox.ShowMessage("Los cambios se guardarón");
 
-                            await Task.Run(() => gridControlCuentas.Invoke(new Action(async () => gridControlCuentas.SetItems(await GetCreditosAsync()))));
+                            await Task.Run(() =>
+                            {
+                                gridControlCuentas.Invoke(new Action(async () =>
+                                {
+                                    gridControlCuentas.SetItems(await GetCreditosAsync());
+                                }));
+                            });
                         });
                     }
                 }
@@ -129,10 +144,17 @@
 
         private async Task<IEnumerable<Credito>> GetCreditosAsync()
         {
-            return await CreditoRepository.GetCreditosAsync(credito =>
+
+            ComboBoxSucursales.Properties.ReadOnly = true;
+
+            IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync(credito =>
                 EstatusCreditos.Contains(credito.IdEstatus) &&
                 credito.IdTipoDProducto == 143 && (credito.Socio.Persona.EsPersonaMoral == false && credito.ExentaIVA || credito.Socio.Persona.EsPersonaMoral) &&
-                credito.IdSucursal == lComboBoxSucursales.Principal<int>());
+                credito.IdSucursal == ComboBoxSucursales.Principal<int>());
+
+            ComboBoxSucursales.Properties.ReadOnly = false;
+
+            return creditos;
         }
 
         private async void ButtonQuery_Click(object sender, EventArgs e) => await ListarCreditos();
@@ -141,9 +163,7 @@
         {
             using (HttpClient client = new HttpClient())
             {
-
-                HttpResponseMessage response = await client.GetAsync(
-                    "https://integratepluscatalogossatapi.azurewebsites.net/api/RegimenFiscal/GetRegimenFiscalAsync");
+                HttpResponseMessage response = await client.GetAsync("https://integratepluscatalogossatapi.azurewebsites.net/api/RegimenFiscal/GetRegimenFiscalAsync");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -154,6 +174,11 @@
             }
 
             return new List<CatalogoRegimenFiscal>();
+        }
+
+        private void FormPersonas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

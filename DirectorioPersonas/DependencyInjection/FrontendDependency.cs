@@ -7,10 +7,10 @@ namespace WinFormsClient.DependencyInjection
 {
     public static class FrontendDependency
     {
-        public static IServiceCollection AddFrontendServices(this IServiceCollection serviceCollection,
+        public static IServiceCollection AddFrontendServices(this IServiceCollection services,
             IConfiguration configuration)
         {
-            serviceCollection.AddDbContextFactory<Repository>(options =>
+            services.AddDbContextFactory<RepositoryQuery>(options =>
             {
                 if (options.IsConfigured == false)
                 {
@@ -25,28 +25,45 @@ namespace WinFormsClient.DependencyInjection
                 }
             });
 
-            serviceCollection.AddScoped<IPersonaRepository, PersonaRepository>();
-            serviceCollection.AddScoped<ICreditoRepository, CreditoRepository>();
-            serviceCollection.AddScoped<IDomicilioRepository, DomicilioRepository>();
-            serviceCollection.AddScoped<IUserRepository, UserRepository>();
-            serviceCollection.AddScoped<ISucursalRepository, SucursalRepository>();
+            services.AddDbContextFactory<RepositoryCommand>(options =>
+            {
+                if (options.IsConfigured == false)
+                {
+                    ISecurityBase64 security = new SecurityBase64();
+                    string decryptingConnectionString = security.Decrypting(configuration.GetConnectionString("Integration"));
+                    options.UseSqlServer(decryptingConnectionString);
+
+                    options.EnableDetailedErrors();
+                    options.EnableSensitiveDataLogging();
+                    options.LogTo(Console.WriteLine, LogLevel.Information);
+
+                }
+            });
+
+            services.AddScoped<IPersonaRepository, PersonaRepository>();
+            services.AddScoped<ICreditoRepository, CreditoRepository>();
+            services.AddScoped<IDomicilioRepository, DomicilioRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISucursalRepository, SucursalRepository>();
 
 
-            serviceCollection.AddSingleton<FormPersonas>();
-            serviceCollection.AddTransient<FormDomicilios>();
-            serviceCollection.AddSingleton<IMessageBox<DialogResult>, WindowsMessageBox>();
-            serviceCollection.AddSingleton<FormLogin>();
+            services.AddSingleton<FormPersonas>();
+            services.AddTransient<FormDomicilios>();
+            services.AddSingleton<IMessageBox<DialogResult>, WindowsMessageBox>();
+            services.AddSingleton<FormLogin>();
 
             LoggerConfiguration loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.File($"{Application.StartupPath}\\ApplicationLog.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7);
 
-            serviceCollection.AddSingleton<Serilog.ILogger>(loggerConfiguration.CreateLogger());
+            services.AddSingleton<Serilog.ILogger>(loggerConfiguration.CreateLogger());
 
-            serviceCollection.AddSingleton<ISecurityBase64, SecurityBase64>();
-            serviceCollection.AddSingleton<ISecurityIntelix, SecurityIntelix>();
+            services.AddSingleton<ISecurityBase64, SecurityBase64>();
+            services.AddSingleton<ISecurityIntelix, SecurityIntelix>();
 
-            return serviceCollection;
+            services.AddMemoryCache();
+
+            return services;
         }
     }
 }

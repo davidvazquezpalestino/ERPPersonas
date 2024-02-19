@@ -1,8 +1,8 @@
 ﻿namespace WinFormsClient.Repositorio;
 
-internal class SucursalRepository(IDbContextFactory<Repository> repository) : ISucursalRepository
+internal class SucursalRepository(IDbContextFactory<RepositoryQuery> repository) : ISucursalRepository
 {
-    private readonly Repository Repository = repository.CreateDbContext();
+    private readonly RepositoryQuery Repository = repository.CreateDbContext();
     public async Task<IEnumerable<Sucursal>> GetSucursalesAsync(Expression<Func<Sucursal, bool>> expression)
     {
         return await Repository.Set<Sucursal>()

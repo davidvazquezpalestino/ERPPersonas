@@ -1,6 +1,6 @@
 ﻿
 namespace WinFormsClient.Repositorio;
-public class DomicilioRepository(Repository repository) : IDomicilioRepository
+public class DomicilioRepository(RepositoryQuery repository) : IDomicilioRepository
 {
     public async Task CreateAsync(Domicilios domicilios)
     {

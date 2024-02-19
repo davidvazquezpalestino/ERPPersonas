@@ -1,17 +1,23 @@
 ﻿namespace WinFormsClient.Repositorio;
 
-public class PersonaRepository(IDbContextFactory<Repository> repository) : IPersonaRepository
+public class PersonaRepository(IDbContextFactory<RepositoryQuery> query, IDbContextFactory<RepositoryCommand> command) : IPersonaRepository
 {
-    private readonly Repository Repository = repository.CreateDbContext();
+    private readonly RepositoryQuery Query = query.CreateDbContext();
 
     public async Task<IEnumerable<Persona>> GetPersonsAsync()
     {
-        return await Repository.Set<Persona>().ToListAsync();
+        using (RepositoryQuery repository = await query.CreateDbContextAsync())
+        {
+            return await Query.Set<Persona>().ToListAsync();
+        }
     }
 
-    public async Task UpdatePersonAsync(IEnumerable<Persona> personas)
+    public async Task UpdatePersonAsync(IEnumerable<PersonaCommand> personas)
     {
-        Repository.UpdateRange(personas);
-        await Repository.SaveChangesAsync();
+        using (RepositoryCommand repository = await command.CreateDbContextAsync())
+        {
+            repository.UpdateRange(personas);
+            await repository.SaveChangesAsync();
+        }
     }
 }

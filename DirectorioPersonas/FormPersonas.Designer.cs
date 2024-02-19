@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            ComboBoxSucursales = new CoreControlesUsuario.UI.UserControlComboBoxEdit();
             ButtonQuery = new SimpleButton();
             ButtonUpdate = new SimpleButton();
             gridControlCuentas = new DevExpress.XtraGrid.GridControl();
@@ -50,12 +51,12 @@
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             personaBindingSource = new BindingSource(components);
             defaultLookAndFeel1 = new DefaultLookAndFeel(components);
-            lComboBoxSucursales = new CoreControlesUsuario.UI.UserControlComboBoxEdit();
-            layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ComboBoxSucursales.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).BeginInit();
@@ -64,14 +65,13 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)lComboBoxSucursales.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
             // 
-            layoutControl1.Controls.Add(lComboBoxSucursales);
+            layoutControl1.Controls.Add(ComboBoxSucursales);
             layoutControl1.Controls.Add(ButtonQuery);
             layoutControl1.Controls.Add(ButtonUpdate);
             layoutControl1.Controls.Add(gridControlCuentas);
@@ -83,6 +83,22 @@
             layoutControl1.Size = new System.Drawing.Size(1037, 617);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
+            // 
+            // ComboBoxSucursales
+            // 
+            ComboBoxSucursales.CharacterCasing = CharacterCasing.Upper;
+            ComboBoxSucursales.EnterMoveNextControl = true;
+            ComboBoxSucursales.IgnoreReadOnly = false;
+            ComboBoxSucursales.Location = new System.Drawing.Point(66, 3);
+            ComboBoxSucursales.Name = "ComboBoxSucursales";
+            ComboBoxSucursales.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            ComboBoxSucursales.Properties.Appearance.Options.UseFont = true;
+            ComboBoxSucursales.Properties.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo) });
+            ComboBoxSucursales.Properties.CharacterCasing = CharacterCasing.Upper;
+            ComboBoxSucursales.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            ComboBoxSucursales.Size = new System.Drawing.Size(165, 24);
+            ComboBoxSucursales.StyleController = layoutControl1;
+            ComboBoxSucursales.TabIndex = 4;
             // 
             // ButtonQuery
             // 
@@ -274,39 +290,23 @@
             emptySpaceItem1.Size = new System.Drawing.Size(653, 32);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // defaultLookAndFeel1
-            // 
-            defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
-            // 
-            // lComboBoxSucursales
-            // 
-            lComboBoxSucursales.CharacterCasing = CharacterCasing.Upper;
-            lComboBoxSucursales.EnterMoveNextControl = true;
-            lComboBoxSucursales.IgnoreReadOnly = false;
-            lComboBoxSucursales.Location = new System.Drawing.Point(66, 3);
-            lComboBoxSucursales.Name = "lComboBoxSucursales";
-            lComboBoxSucursales.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            lComboBoxSucursales.Properties.Appearance.Options.UseFont = true;
-            lComboBoxSucursales.Properties.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo) });
-            lComboBoxSucursales.Properties.CharacterCasing = CharacterCasing.Upper;
-            lComboBoxSucursales.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
-            lComboBoxSucursales.Size = new System.Drawing.Size(165, 24);
-            lComboBoxSucursales.StyleController = layoutControl1;
-            lComboBoxSucursales.TabIndex = 4;
-            // 
             // layoutControlItem4
             // 
             layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 12F);
             layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
             layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
             layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            layoutControlItem4.Control = lComboBoxSucursales;
+            layoutControlItem4.Control = ComboBoxSucursales;
             layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new System.Drawing.Size(232, 32);
             layoutControlItem4.Text = "Sucursal";
             layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Left;
             layoutControlItem4.TextSize = new System.Drawing.Size(59, 21);
+            // 
+            // defaultLookAndFeel1
+            // 
+            defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
             // 
             // FormPersonas
             // 
@@ -317,9 +317,11 @@
             Name = "FormPersonas";
             Text = "Créditos";
             WindowState = FormWindowState.Maximized;
+            FormClosed += FormPersonas_FormClosed;
             Load += FormPersonas_Load;
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ComboBoxSucursales.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).EndInit();
@@ -328,9 +330,8 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)lComboBoxSucursales.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -359,7 +360,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColClasificacionCredito;
         private DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraGrid.Columns.GridColumn colMail;
-        private CoreControlesUsuario.UI.UserControlComboBoxEdit lComboBoxSucursales;
+        private CoreControlesUsuario.UI.UserControlComboBoxEdit ComboBoxSucursales;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

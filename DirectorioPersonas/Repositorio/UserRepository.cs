@@ -1,6 +1,6 @@
 ﻿namespace WinFormsClient.Repositorio;
 
-public class UserRepository(Repository repository) : IUserRepository
+public class UserRepository(RepositoryQuery repository) : IUserRepository
 {
     public async Task<User> GetUserAsync(string username)
     {

@@ -13,6 +13,14 @@
         public bool EsPersonaMoral { get; set; }
         public Email Email { get; set; }
         public override string ToString() => RazonSocial;
-
     }
+
+
+    public class PersonaCommand
+    {
+        public int IdPersona { get; set; }
+        public string RegimenFiscal { get; set; }
+        public string CodigoPostal { get; set; }
+    }
+
 }

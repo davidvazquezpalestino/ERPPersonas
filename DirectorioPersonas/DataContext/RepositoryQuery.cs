@@ -1,6 +1,6 @@
 ﻿namespace WinFormsClient.DataContext;
 
-public class Repository(DbContextOptions<Repository> options) : DbContext(options)
+public class RepositoryQuery(DbContextOptions<RepositoryQuery> options) : DbContext(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -13,7 +13,9 @@ public class Repository(DbContextOptions<Repository> options) : DbContext(option
 
         modelBuilder.Entity<Persona>(builder =>
         {
-            builder.ToTable("tGRLpersonas", "dbo").HasKey(persona => persona.IdPersona);
+            builder.ToTable("tGRLpersonas", "dbo")
+                .HasKey(persona => persona.IdPersona);
+
             builder.HasOne(persona => persona.Email)
                 .WithMany()
                 .HasForeignKey(socio => socio.IdRelDomicilios);

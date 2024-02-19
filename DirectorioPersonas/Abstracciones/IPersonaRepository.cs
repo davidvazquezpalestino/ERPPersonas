@@ -2,6 +2,5 @@
 
 public interface IPersonaRepository
 {
-    Task<IEnumerable<Persona>> GetPersonsAsync();
-    Task UpdatePersonAsync(IEnumerable<Persona>  personas);
+    Task UpdatePersonAsync(IEnumerable<PersonaCommand>  personas);
 }
