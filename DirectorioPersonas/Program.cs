@@ -15,7 +15,7 @@
 
             IHost host = Host.CreateDefaultBuilder().ConfigureAppConfiguration(configurationBuilder =>
             {
-                configurationBuilder.AddJsonFile("appsettings.json");
+                configurationBuilder.AddJsonFile("appsettings.json", true);
             }).ConfigureServices((context, collection) =>
             {
                 collection.AddFrontendServices(context.Configuration);

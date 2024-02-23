@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using Microsoft.AspNetCore.Http.Internal;
+using System.IO;
 
 namespace WinFormsClient
 {
@@ -8,25 +9,66 @@ namespace WinFormsClient
         private readonly ICreditoRepository CreditoRepository;
         private readonly IMessageBox<DialogResult> MessageBox;
         private readonly ISucursalRepository SucursalRepository;
+        private readonly IFileStore FileStore;
         public int SucursalID;
         public int UserID { get; set; }
 
         readonly RepositoryItemLookUpEdit RepositoryCombo = new RepositoryItemLookUpEdit();
+
         private static readonly int[] EstatusCreditos = [1, 53, 73];
 
         public FormPersonas(IPersonaRepository personaRepository,
             ICreditoRepository creditoRepository,
             ISucursalRepository sucursalRepository,
+            IFileStore fileStore,
             IMessageBox<DialogResult> messageBox)
         {
             PersonaRepository = personaRepository;
             CreditoRepository = creditoRepository;
             SucursalRepository = sucursalRepository;
+            FileStore = fileStore;
             MessageBox = messageBox;
             InitializeComponent();
 
             gridViewCuentas.CellValueChanging += GridViewCuentas_CellValueChanging;
             ComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
+           
+        }
+
+        private async void FormPersonas_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+
+                if (fileInfo.Extension.ToLower() != ".pdf")
+                {
+                    throw new InvalidOperationException("El archivo no es un PDF.");
+                }
+
+                // Leer el contenido del archivo PDF en un MemoryStream
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (FileStream fileStream = fileInfo.OpenRead())
+                    {
+                        await fileStream.CopyToAsync(memoryStream);
+                    }
+                    FormFile formFile = new FormFile(
+                        baseStream: memoryStream,
+                        baseStreamOffset: 0,
+                        length: memoryStream.Length,
+                        name: fileInfo.Name,
+                        fileName: fileInfo.Name
+                    )
+                    {
+                        Headers = new HeaderDictionary(),
+                        ContentType = "application/pdf"
+                    };
+
+                    string url = await FileStore.StoreAsync("cajazongolica", formFile);
+                }
+            }
         }
 
         private async void LComboBoxSucursales_SelectedValueChanged(object sender, EventArgs e)

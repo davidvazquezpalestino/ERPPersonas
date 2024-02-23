@@ -54,6 +54,8 @@
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             personaBindingSource = new BindingSource(components);
             defaultLookAndFeel1 = new DefaultLookAndFeel(components);
+            colBlob = new DevExpress.XtraGrid.Columns.GridColumn();
+            btnBlob = new RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ComboBoxSucursales.Properties).BeginInit();
@@ -67,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnBlob).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
@@ -135,13 +138,14 @@
             gridControlCuentas.Location = new System.Drawing.Point(3, 35);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
+            gridControlCuentas.RepositoryItems.AddRange(new RepositoryItem[] { btnBlob });
             gridControlCuentas.Size = new System.Drawing.Size(1031, 579);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
             // gridViewCuentas
             // 
-            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal, colMail });
+            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal, colMail, colBlob });
             gridViewCuentas.GridControl = gridControlCuentas;
             gridViewCuentas.Name = "gridViewCuentas";
             gridViewCuentas.OptionsSelection.MultiSelect = true;
@@ -308,6 +312,22 @@
             // 
             defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
             // 
+            // colBlob
+            // 
+            colBlob.Caption = "Adjuntar CSF";
+            colBlob.ColumnEdit = btnBlob;
+            colBlob.Name = "colBlob";
+            colBlob.Visible = true;
+            colBlob.VisibleIndex = 10;
+            // 
+            // btnBlob
+            // 
+            this.btnBlob.AutoHeight = false;
+            this.btnBlob.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.btnBlob.Name = "repositoryItemButtonEdit1";
+            this.btnBlob.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnBlob.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.FormPersonas_Click);
+            // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +352,7 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnBlob).EndInit();
             ResumeLayout(false);
         }
 
@@ -362,6 +383,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMail;
         private CoreControlesUsuario.UI.UserControlComboBoxEdit ComboBoxSucursales;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn colBlob;
+        private RepositoryItemButtonEdit btnBlob;
     }
 }
 

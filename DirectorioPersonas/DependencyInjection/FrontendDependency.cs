@@ -61,6 +61,8 @@ namespace WinFormsClient.DependencyInjection
             services.AddSingleton<ISecurityBase64, SecurityBase64>();
             services.AddSingleton<ISecurityIntelix, SecurityIntelix>();
 
+            services.AddSingleton<IFileStore, FileStoreAzure>();
+
             services.AddMemoryCache();
 
             return services;
