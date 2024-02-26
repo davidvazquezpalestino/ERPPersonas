@@ -63,7 +63,21 @@ namespace WinFormsClient.DependencyInjection
 
             services.AddSingleton<IFileStore, FileStoreAzure>();
 
-            services.AddMemoryCache();
+            services.AddStackExchangeRedisOutputCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("RedisCache");
+                options.InstanceName = "SampleInstance";
+            });
+
+            services.AddOutputCache(options =>
+            {
+                options.AddBasePolicy(builder =>
+                    builder.Expire(TimeSpan.FromDays(1)));
+            });
+
+            services.AddDistributedMemoryCache();
+
+
 
             return services;
         }

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Internal;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace WinFormsClient
 {
@@ -10,6 +10,8 @@ namespace WinFormsClient
         private readonly IMessageBox<DialogResult> MessageBox;
         private readonly ISucursalRepository SucursalRepository;
         private readonly IFileStore FileStore;
+        private readonly IConfiguration Configuration;
+        private readonly IDistributedCache Cache;
         public int SucursalID;
         public int UserID { get; set; }
 
@@ -21,18 +23,22 @@ namespace WinFormsClient
             ICreditoRepository creditoRepository,
             ISucursalRepository sucursalRepository,
             IFileStore fileStore,
+            IConfiguration configuration,
+            IDistributedCache cache,
             IMessageBox<DialogResult> messageBox)
         {
             PersonaRepository = personaRepository;
             CreditoRepository = creditoRepository;
             SucursalRepository = sucursalRepository;
             FileStore = fileStore;
+            Configuration = configuration;
+            Cache = cache;
             MessageBox = messageBox;
             InitializeComponent();
 
             gridViewCuentas.CellValueChanging += GridViewCuentas_CellValueChanging;
             ComboBoxSucursales.SelectedValueChanged += LComboBoxSucursales_SelectedValueChanged;
-           
+
         }
 
         private async void FormPersonas_Click(object sender, EventArgs e)
@@ -203,15 +209,17 @@ namespace WinFormsClient
 
         public async Task<ICollection<CatalogoRegimenFiscal>> GetRegimenFiscalAsync()
         {
+            string baseAddress = Configuration.GetConnectionString("BaseAddress")!;
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync("https://integratepluscatalogossatapi.azurewebsites.net/api/RegimenFiscal/GetRegimenFiscalAsync");
+                client.BaseAddress = new Uri(baseAddress);
+                HttpResponseMessage response = await client.GetAsync("api/RegimenFiscal/GetRegimenFiscalAsync");
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
-
-                    return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+                    return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData, 
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web));
                 }
             }
 
