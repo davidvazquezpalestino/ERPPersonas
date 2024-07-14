@@ -46,6 +46,8 @@
             colRegimenFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             colCodigoPostal = new DevExpress.XtraGrid.Columns.GridColumn();
             colMail = new DevExpress.XtraGrid.Columns.GridColumn();
+            colBlob = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemButtonEdit1 = new RepositoryItemButtonEdit();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -54,14 +56,13 @@
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             personaBindingSource = new BindingSource(components);
             defaultLookAndFeel1 = new DefaultLookAndFeel(components);
-            colBlob = new DevExpress.XtraGrid.Columns.GridColumn();
-            btnBlob = new RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ComboBoxSucursales.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
@@ -69,7 +70,6 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnBlob).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
@@ -138,7 +138,7 @@
             gridControlCuentas.Location = new System.Drawing.Point(3, 35);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
-            gridControlCuentas.RepositoryItems.AddRange(new RepositoryItem[] { btnBlob });
+            gridControlCuentas.RepositoryItems.AddRange(new RepositoryItem[] { repositoryItemButtonEdit1 });
             gridControlCuentas.Size = new System.Drawing.Size(1031, 579);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
@@ -208,7 +208,6 @@
             colRazonSocial.Caption = "Razón Social";
             colRazonSocial.FieldName = "Socio.Persona.RazonSocial";
             colRazonSocial.Name = "colRazonSocial";
-            colRazonSocial.OptionsColumn.AllowEdit = false;
             colRazonSocial.Visible = true;
             colRazonSocial.VisibleIndex = 5;
             colRazonSocial.Width = 174;
@@ -248,6 +247,22 @@
             colMail.Name = "colMail";
             colMail.Visible = true;
             colMail.VisibleIndex = 9;
+            // 
+            // colBlob
+            // 
+            colBlob.Caption = "Adjuntar CSF";
+            colBlob.ColumnEdit = repositoryItemButtonEdit1;
+            colBlob.Name = "colBlob";
+            colBlob.Visible = true;
+            colBlob.VisibleIndex = 10;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            repositoryItemButtonEdit1.AutoHeight = false;
+            repositoryItemButtonEdit1.Buttons.AddRange(new EditorButton[] { new EditorButton() });
+            repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            repositoryItemButtonEdit1.TextEditStyle = TextEditStyles.HideTextEditor;
+            repositoryItemButtonEdit1.ButtonClick += FormPersonas_Click;
             // 
             // layoutControlItem3
             // 
@@ -312,22 +327,6 @@
             // 
             defaultLookAndFeel1.LookAndFeel.SkinName = "DevExpress Style";
             // 
-            // colBlob
-            // 
-            colBlob.Caption = "Adjuntar CSF";
-            colBlob.ColumnEdit = btnBlob;
-            colBlob.Name = "colBlob";
-            colBlob.Visible = true;
-            colBlob.VisibleIndex = 10;
-            // 
-            // btnBlob
-            // 
-            this.btnBlob.AutoHeight = false;
-            this.btnBlob.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.btnBlob.Name = "repositoryItemButtonEdit1";
-            this.btnBlob.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.btnBlob.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.FormPersonas_Click);
-            // 
             // FormPersonas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +344,7 @@
             ((System.ComponentModel.ISupportInitialize)gridControlCuentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)creditoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewCuentas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemButtonEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
@@ -352,7 +352,6 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)personaBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnBlob).EndInit();
             ResumeLayout(false);
         }
 
@@ -385,6 +384,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn colBlob;
         private RepositoryItemButtonEdit btnBlob;
+        private RepositoryItemButtonEdit repositoryItemButtonEdit1;
     }
 }
 

@@ -159,11 +159,20 @@ namespace WinFormsClient
                 {
                     List<PersonaCommand> personas = creditos
                         .Where(credito => credito.CambioValor)
-                        .Select(credito => new PersonaCommand()
+                        .GroupBy(credito =>
+                        new PersonaCommand
                         {
                             IdPersona = credito.Socio.Persona.IdPersona,
                             CodigoPostal = credito.Socio.Persona.CodigoPostal,
-                            RegimenFiscal = credito.Socio.Persona.RegimenFiscal
+                            RegimenFiscal = credito.Socio.Persona.RegimenFiscal,
+                            RazonSocial = credito.Socio.Persona.RazonSocial
+                        })
+                        .Select(grouping => new PersonaCommand
+                        {
+                            IdPersona = grouping.Key.IdPersona,
+                            CodigoPostal = grouping.Key.CodigoPostal,
+                            RegimenFiscal = grouping.Key.RegimenFiscal,
+                            RazonSocial = grouping.Key.RazonSocial
                         }).ToList();
 
                     if (personas.Count > 0)
@@ -213,12 +222,13 @@ namespace WinFormsClient
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseAddress);
-                HttpResponseMessage response = await client.GetAsync("api/RegimenFiscal/GetRegimenFiscalAsync");
+                HttpResponseMessage response = await client.GetAsync("api/catalogossat/RegimenFiscal/GetRegimenFiscalAsync");
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
-                    return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData, 
+
+                    return JsonSerializer.Deserialize<ICollection<CatalogoRegimenFiscal>>(responseData,
                         new JsonSerializerOptions(JsonSerializerDefaults.Web));
                 }
             }

@@ -21,6 +21,7 @@
         public int IdPersona { get; set; }
         public string RegimenFiscal { get; set; }
         public string CodigoPostal { get; set; }
+        public string RazonSocial { get; set; }
     }
 
 }
