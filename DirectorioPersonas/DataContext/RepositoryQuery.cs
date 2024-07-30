@@ -15,10 +15,14 @@ public class RepositoryQuery(DbContextOptions<RepositoryQuery> options) : DbCont
         {
             builder.ToTable("tGRLpersonas", "dbo")
                 .HasKey(persona => persona.IdPersona);
+            
+            builder.ToTable(table => table.HasTrigger("NombreTrigger"));
+
 
             builder.HasOne(persona => persona.Email)
                 .WithMany()
                 .HasForeignKey(socio => socio.IdRelDomicilios);
+
         });
 
         modelBuilder.Entity<Socio>(builder =>
