@@ -16,7 +16,7 @@ public class RepositoryQuery(DbContextOptions<RepositoryQuery> options) : DbCont
             builder.ToTable("tGRLpersonas", "dbo")
                 .HasKey(persona => persona.IdPersona);
             
-            builder.ToTable(table => table.HasTrigger("NombreTrigger"));
+            builder.ToTable(table => table.HasTrigger("trValidarRazonSocialLetrasModificacion"));
 
 
             builder.HasOne(persona => persona.Email)

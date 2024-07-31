@@ -9,7 +9,7 @@ public class RepositoryCommand(DbContextOptions<RepositoryCommand> options) : Db
             builder.ToTable("tGRLpersonas", "dbo")
                 .HasKey(persona => persona.IdPersona);
 
-            builder.ToTable(table => table.HasTrigger("NombreTrigger"));
+            builder.ToTable(table => table.HasTrigger("trValidarRazonSocialLetrasModificacion"));
         });
     }
 }
