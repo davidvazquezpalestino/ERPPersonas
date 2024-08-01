@@ -206,7 +206,7 @@ namespace WinFormsClient
 
             IEnumerable<Credito> creditos = await CreditoRepository.GetCreditosAsync(credito =>
                 EstatusCreditos.Contains(credito.IdEstatus) &&
-                credito.IdTipoDProducto == 143 && (credito.Socio.Persona.EsPersonaMoral == false && credito.ExentaIVA || credito.Socio.Persona.EsPersonaMoral) &&
+                credito.IdTipoDProducto == 143 && 
                 credito.IdSucursal == ComboBoxSucursales.Principal<int>());
 
             ComboBoxSucursales.Properties.ReadOnly = false;
