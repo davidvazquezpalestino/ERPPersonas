@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            ComboBoxSucursal = new CoreControlesUsuario.UI.UserControlComboBoxEdit();
+            ComboBoxSucursal = new DotNet.CoreControlesUsuario.UI.UserControlComboBoxEdit();
             pictureEdit1 = new PictureEdit();
             btnSalir = new SimpleButton();
             btnAceptar = new SimpleButton();
@@ -356,7 +356,7 @@
         private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private CoreControlesUsuario.UI.UserControlComboBoxEdit ComboBoxSucursal;
+        private DotNet.CoreControlesUsuario.UI.UserControlComboBoxEdit ComboBoxSucursal;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }
 }

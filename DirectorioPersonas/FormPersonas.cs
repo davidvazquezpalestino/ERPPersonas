@@ -218,10 +218,10 @@ namespace WinFormsClient
 
         public async Task<ICollection<CatalogoRegimenFiscal>> GetRegimenFiscalAsync()
         {
-            string baseAddress = Configuration.GetConnectionString("BaseAddress")!;
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(baseAddress);
+                client.BaseAddress = new Uri(Configuration.GetConnectionString("BaseAddress")!);
+
                 HttpResponseMessage response = await client.GetAsync("api/catalogossat/RegimenFiscal/GetRegimenFiscalAsync");
 
                 if (response.IsSuccessStatusCode)

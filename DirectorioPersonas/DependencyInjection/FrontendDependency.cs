@@ -1,9 +1,4 @@
-﻿using CoreMessageBox.Servicios;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using WinFormsClient.Repositorio;
-
-namespace WinFormsClient.DependencyInjection
+﻿namespace WinFormsClient.DependencyInjection
 {
     public static class FrontendDependency
     {
