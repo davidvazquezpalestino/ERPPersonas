@@ -6,19 +6,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Azure.Storage.Blobs" Version="12.21.1" />
-		<PackageReference Include="CoreControlesUsuario" Version="2024.7.24" />
-		<PackageReference Include="CoreMessageBox" Version="2024.7.24" />
-		<PackageReference Include="CoreUtilerias" Version="2024.7.24" />
-		<PackageReference Include="DevExpress.Win.BonusSkins" Version="24.1.3" />
-		<PackageReference Include="DevExpress.Win.Design" Version="24.1.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-		<PackageReference Include="Microsoft.AspNetCore.OutputCaching.StackExchangeRedis" Version="8.0.7" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+		<PackageReference Include="Azure.Identity" Version="1.12.1" />
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.22.1" />
+		<PackageReference Include="CoreControlesUsuario" Version="2024.9.4" />
+		<PackageReference Include="CoreMessageBox" Version="2024.8.13" />
+		<PackageReference Include="CoreUtilerias" Version="2024.9.5" />
+		<PackageReference Include="DevExpress.Win.BonusSkins" Version="24.1.4" />
+		<PackageReference Include="DevExpress.Win.Design" Version="24.1.4" />
+		<PackageReference Include="EFCore.BulkExtensions" Version="8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.34" />
+		<PackageReference Include="Microsoft.AspNetCore.OutputCaching.StackExchangeRedis" Version="8.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Identity.Client" Version="4.65.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

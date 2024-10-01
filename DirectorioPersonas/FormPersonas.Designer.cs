@@ -42,6 +42,7 @@
             colSocio = new DevExpress.XtraGrid.Columns.GridColumn();
             colCredito = new DevExpress.XtraGrid.Columns.GridColumn();
             colRazonSocial = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNombre = new DevExpress.XtraGrid.Columns.GridColumn();
             colRFC = new DevExpress.XtraGrid.Columns.GridColumn();
             colRegimenFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             colCodigoPostal = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,7 +55,6 @@
             emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             personaBindingSource = new BindingSource(components);
-            defaultLookAndFeel1 = new DefaultLookAndFeel(components);
             barManager1 = new DevExpress.XtraBars.BarManager(components);
             bar3 = new DevExpress.XtraBars.Bar();
             barButton = new DevExpress.XtraBars.BarButtonItem();
@@ -96,7 +96,7 @@
             layoutControl1.Location = new System.Drawing.Point(0, 0);
             layoutControl1.Name = "layoutControl1";
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1045, 580);
+            layoutControl1.Size = new System.Drawing.Size(1045, 592);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -105,14 +105,14 @@
             ComboBoxSucursales.CharacterCasing = CharacterCasing.Upper;
             ComboBoxSucursales.EnterMoveNextControl = true;
             ComboBoxSucursales.IgnoreReadOnly = false;
-            ComboBoxSucursales.Location = new System.Drawing.Point(79, 4);
+            ComboBoxSucursales.Location = new System.Drawing.Point(74, 3);
             ComboBoxSucursales.Name = "ComboBoxSucursales";
             ComboBoxSucursales.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             ComboBoxSucursales.Properties.Appearance.Options.UseFont = true;
             ComboBoxSucursales.Properties.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo) });
             ComboBoxSucursales.Properties.CharacterCasing = CharacterCasing.Upper;
             ComboBoxSucursales.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
-            ComboBoxSucursales.Size = new System.Drawing.Size(153, 32);
+            ComboBoxSucursales.Size = new System.Drawing.Size(159, 26);
             ComboBoxSucursales.StyleController = layoutControl1;
             ComboBoxSucursales.TabIndex = 4;
             // 
@@ -137,9 +137,9 @@
             ButtonUpdate.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             ButtonUpdate.Appearance.Options.UseBackColor = true;
             ButtonUpdate.Appearance.Options.UseFont = true;
-            ButtonUpdate.Location = new System.Drawing.Point(896, 4);
+            ButtonUpdate.Location = new System.Drawing.Point(895, 3);
             ButtonUpdate.Name = "ButtonUpdate";
-            ButtonUpdate.Size = new System.Drawing.Size(145, 28);
+            ButtonUpdate.Size = new System.Drawing.Size(147, 26);
             ButtonUpdate.StyleController = layoutControl1;
             ButtonUpdate.TabIndex = 2;
             ButtonUpdate.Text = "Guardar";
@@ -148,17 +148,17 @@
             // gridControlCuentas
             // 
             gridControlCuentas.DataSource = creditoBindingSource;
-            gridControlCuentas.Location = new System.Drawing.Point(4, 42);
+            gridControlCuentas.Location = new System.Drawing.Point(3, 33);
             gridControlCuentas.MainView = gridViewCuentas;
             gridControlCuentas.Name = "gridControlCuentas";
             gridControlCuentas.RepositoryItems.AddRange(new RepositoryItem[] { repositoryItemButtonEdit1 });
-            gridControlCuentas.Size = new System.Drawing.Size(1037, 534);
+            gridControlCuentas.Size = new System.Drawing.Size(1039, 556);
             gridControlCuentas.TabIndex = 3;
             gridControlCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewCuentas });
             // 
             // gridViewCuentas
             // 
-            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colRFC, colRegimenFiscal, colCodigoPostal, colMail });
+            gridViewCuentas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { ColClasificacionCredito, ColPeriodo, colSucursal, colSocio, colCredito, colRazonSocial, colNombre, colRFC, colRegimenFiscal, colCodigoPostal, colMail });
             gridViewCuentas.GridControl = gridControlCuentas;
             gridViewCuentas.Name = "gridViewCuentas";
             gridViewCuentas.OptionsSelection.MultiSelect = true;
@@ -225,6 +225,15 @@
             colRazonSocial.VisibleIndex = 5;
             colRazonSocial.Width = 174;
             // 
+            // colNombre
+            // 
+            colNombre.Caption = "Nombre";
+            colNombre.FieldName = "Socio.Persona.Nombre";
+            colNombre.Name = "colNombre";
+            colNombre.OptionsColumn.ReadOnly = true;
+            colNombre.Visible = true;
+            colNombre.VisibleIndex = 6;
+            // 
             // colRFC
             // 
             colRFC.Caption = "RFC";
@@ -232,7 +241,7 @@
             colRFC.Name = "colRFC";
             colRFC.OptionsColumn.AllowEdit = false;
             colRFC.Visible = true;
-            colRFC.VisibleIndex = 6;
+            colRFC.VisibleIndex = 7;
             colRFC.Width = 109;
             // 
             // colRegimenFiscal
@@ -241,7 +250,7 @@
             colRegimenFiscal.FieldName = "Socio.Persona.RegimenFiscal";
             colRegimenFiscal.Name = "colRegimenFiscal";
             colRegimenFiscal.Visible = true;
-            colRegimenFiscal.VisibleIndex = 7;
+            colRegimenFiscal.VisibleIndex = 8;
             colRegimenFiscal.Width = 124;
             // 
             // colCodigoPostal
@@ -250,7 +259,7 @@
             colCodigoPostal.FieldName = "Socio.Persona.CodigoPostal";
             colCodigoPostal.Name = "colCodigoPostal";
             colCodigoPostal.Visible = true;
-            colCodigoPostal.VisibleIndex = 8;
+            colCodigoPostal.VisibleIndex = 9;
             colCodigoPostal.Width = 115;
             // 
             // colMail
@@ -259,7 +268,7 @@
             colMail.FieldName = "Socio.Persona.Email.Emails";
             colMail.Name = "colMail";
             colMail.Visible = true;
-            colMail.VisibleIndex = 9;
+            colMail.VisibleIndex = 10;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -285,15 +294,15 @@
             Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, emptySpaceItem1, layoutControlItem4 });
             Root.Name = "Root";
             Root.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            Root.Size = new System.Drawing.Size(1045, 580);
+            Root.Size = new System.Drawing.Size(1045, 592);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = gridControlCuentas;
-            layoutControlItem1.Location = new System.Drawing.Point(0, 38);
+            layoutControlItem1.Location = new System.Drawing.Point(0, 30);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(1043, 540);
+            layoutControlItem1.Size = new System.Drawing.Size(1043, 560);
             layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem1.TextVisible = false;
             // 
@@ -302,7 +311,7 @@
             layoutControlItem2.Control = ButtonUpdate;
             layoutControlItem2.Location = new System.Drawing.Point(892, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new System.Drawing.Size(151, 38);
+            layoutControlItem2.Size = new System.Drawing.Size(151, 30);
             layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             layoutControlItem2.TextVisible = false;
             // 
@@ -311,7 +320,7 @@
             emptySpaceItem1.AllowHotTrack = false;
             emptySpaceItem1.Location = new System.Drawing.Point(234, 0);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new System.Drawing.Size(658, 38);
+            emptySpaceItem1.Size = new System.Drawing.Size(658, 30);
             emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
@@ -323,14 +332,10 @@
             layoutControlItem4.Control = ComboBoxSucursales;
             layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new System.Drawing.Size(234, 38);
+            layoutControlItem4.Size = new System.Drawing.Size(234, 30);
             layoutControlItem4.Text = "Sucursal";
             layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Left;
             layoutControlItem4.TextSize = new System.Drawing.Size(59, 21);
-            // 
-            // defaultLookAndFeel1
-            // 
-            defaultLookAndFeel1.LookAndFeel.SkinName = "WXI";
             // 
             // barManager1
             // 
@@ -376,9 +381,9 @@
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = DockStyle.Bottom;
-            barDockControlBottom.Location = new System.Drawing.Point(0, 580);
+            barDockControlBottom.Location = new System.Drawing.Point(0, 592);
             barDockControlBottom.Manager = barManager1;
-            barDockControlBottom.Size = new System.Drawing.Size(1045, 35);
+            barDockControlBottom.Size = new System.Drawing.Size(1045, 29);
             // 
             // barDockControlLeft
             // 
@@ -386,7 +391,7 @@
             barDockControlLeft.Dock = DockStyle.Left;
             barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             barDockControlLeft.Manager = barManager1;
-            barDockControlLeft.Size = new System.Drawing.Size(0, 580);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 592);
             // 
             // barDockControlRight
             // 
@@ -394,7 +399,7 @@
             barDockControlRight.Dock = DockStyle.Right;
             barDockControlRight.Location = new System.Drawing.Point(1045, 0);
             barDockControlRight.Manager = barManager1;
-            barDockControlRight.Size = new System.Drawing.Size(0, 580);
+            barDockControlRight.Size = new System.Drawing.Size(0, 592);
             // 
             // barEditItem1
             // 
@@ -423,9 +428,10 @@
             // 
             // FormPersonas
             // 
+            Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1045, 615);
+            ClientSize = new System.Drawing.Size(1045, 621);
             Controls.Add(layoutControl1);
             Controls.Add(barDockControlLeft);
             Controls.Add(barDockControlRight);
@@ -481,7 +487,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn ColPeriodo;
         private DevExpress.XtraGrid.Columns.GridColumn ColClasificacionCredito;
-        private DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraGrid.Columns.GridColumn colMail;
         private DotNet.CoreControlesUsuario.UI.UserControlComboBoxEdit ComboBoxSucursales;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
@@ -498,6 +503,7 @@
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
         private DevExpress.XtraBars.BarButtonItem barButton;
+        private DevExpress.XtraGrid.Columns.GridColumn colNombre;
     }
 }
 

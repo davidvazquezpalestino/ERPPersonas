@@ -1,4 +1,3 @@
-
 global using System;
 global using System.Collections.Generic;
 global using System.ComponentModel.DataAnnotations.Schema;
@@ -17,8 +16,9 @@ global using DevExpress.XtraEditors.Repository;
 global using DotNet.CoreControlesUsuario.Servicios;
 global using DotNet.CoreMessageBox.Abstracciones;
 global using DotNet.CoreMessageBox.Servicios;
-global using DotNet.CoreUtilerias.Abstracciones;
 global using DotNet.CoreUtilerias.Extensions;
+global using DotNet.CoreUtilerias.Interfaces;
+global using EFCore.BulkExtensions;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
